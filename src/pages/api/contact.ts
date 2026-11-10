@@ -18,6 +18,7 @@ const ALLOWED_HOSTS = ['iplanwellness.com', 'www.iplanwellness.com', 'iplanwelln
 
 type Env = {
 	TURNSTILE_SECRET?: string;
+	TURNSTILE_SECRET_KEY?: string;
 	FORM_TO?: string;
 	FORM_FROM?: string;
 	EMAIL?: { send(message: unknown): Promise<void> };
@@ -29,16 +30,13 @@ const json = (body: Record<string, unknown>, status = 200) =>
 const clean = (v: FormDataEntryValue | null, max: number) => String(v ?? '').replace(/\r\n?/g, '\n').trim().slice(0, max);
 const oneLine = (s: string) => s.replace(/[\r\n]+/g, ' ');
 const b64 = (s: string) => Buffer.from(s, 'utf8').toString('base64');
+/** Accept either secret name (the dashboard one was saved as TURNSTILE_SECRET_KEY). */
+const turnstileSecret = (env: Env) => env.TURNSTILE_SECRET || env.TURNSTILE_SECRET_KEY;
 
 // Health check: reports only whether each setting is present (never its value).
 export const GET: APIRoute = ({ locals }) => {
 	const env = ((locals as { runtime?: { env?: Env } }).runtime?.env ?? {}) as Env;
-	return json({
-		turnstileSecret: Boolean(env.TURNSTILE_SECRET),
-		emailBinding: Boolean(env.EMAIL),
-		// Names only (helps spot a typo like "TURNSTILE" or a trailing space); values are never exposed.
-		settings: Object.keys(env).filter((k) => k !== 'ASSETS').map((k) => JSON.stringify(k)),
-	});
+	return json({ turnstileSecret: Boolean(turnstileSecret(env)), emailBinding: Boolean(env.EMAIL) });
 };
 
 export const POST: APIRoute = async ({ request, locals }) => {
@@ -72,11 +70,12 @@ export const POST: APIRoute = async ({ request, locals }) => {
 	if (/<a\s|\[url=/i.test(data.message)) return json({ ok: false, error: 'spam' }, 400);
 
 	// 4. Turnstile, verified server-side (the browser check alone can be skipped by bots).
-	if (!env.TURNSTILE_SECRET) return json({ ok: false, fallback: 'mailto', error: 'not_configured' }, 503);
+	const secret = turnstileSecret(env);
+	if (!secret) return json({ ok: false, fallback: 'mailto', error: 'not_configured' }, 503);
 	const token = clean(form.get('cf-turnstile-response'), 4096);
 	if (!token) return json({ ok: false, error: 'captcha' }, 400);
 	const verify = new FormData();
-	verify.append('secret', env.TURNSTILE_SECRET);
+	verify.append('secret', secret);
 	verify.append('response', token);
 	const ip = request.headers.get('CF-Connecting-IP');
 	if (ip) verify.append('remoteip', ip);
