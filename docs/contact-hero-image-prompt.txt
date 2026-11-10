@@ -1,0 +1,11 @@
+Generated using the built-in image_gen tool.
+Final asset: src/assets/images/pages/wellness-brand-consultation-contact.webp
+
+Use case: photorealistic-natural
+Asset type: contact-page hero photograph for a Thai wellness digital marketing agency, portrait 4:5 composition.
+Primary request: A believable candid editorial photograph of a warm, thoughtful consultation between a Thai female brand strategist and a Thai female wellness business owner, both in their 30s, seated at a small oak table in a quietly elegant Bangkok wellness studio. They are engaged in a relaxed conversation, not looking at the camera. One closed laptop, an open notebook with indistinct marks and a few restrained sage and cream brand material swatches on the table suggest collaborative brand planning. Keep gestures simple, hands resting naturally.
+Scene/backdrop: daylight through a side window, textured muted forest-green wall, subtle leafy tropical planting in the background, linen clothing in cream and olive, calm lived-in interior.
+Style/medium: authentic on-location magazine photography, 50mm lens, honest skin texture, subtle film grain, restrained contrast, slight natural asymmetry, realistic proportions, no beauty retouching.
+Composition/framing: medium-wide seated scene with both subjects in the central and right two-thirds, faces in the upper-middle of the image, enough breathing room around them for a tall website crop; darker uncluttered space toward the left edge where the website applies a gradient. People and conversation are the focal point.
+Lighting/mood: soft lateral window light, grounded, welcoming, calm, professional, tactile. Muted deep greens and warm cream with natural skin tones.
+Constraints: no text, no logos, no watermark. Avoid glossy stock-photo smiles, handshakes, spa cliches, candles, surreal foliage, excessive bokeh, orange teal grading, plastic skin, CGI, illustration, overperfect symmetry, exaggerated sunlight.

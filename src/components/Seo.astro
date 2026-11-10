@@ -1,7 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import { SITE, CONTACT, PATHS } from '../consts';
+import { SITE, CONTACT, PATHS, LAUNCHED } from '../consts';
 import { image } from '../lib/images';
 
 export interface SeoProps {
@@ -22,7 +22,7 @@ export interface SeoProps {
 const { title, description, image: img = 'og-default', imageAlt, type = 'website', canonical, noindex = false, publishedTime, modifiedTime, schema = [] } = Astro.props as SeoProps;
 
 // Preview builds (PUBLIC_NOINDEX=true) must never be indexed – they'd duplicate the real site.
-const previewNoindex = import.meta.env.PUBLIC_NOINDEX === 'true';
+const previewNoindex = !LAUNCHED || import.meta.env.PUBLIC_NOINDEX === 'true';
 const fullTitle = title.includes(SITE.name) ? title : `${title} | ${SITE.name}`;
 const canonicalURL = canonical ?? new URL(Astro.url.pathname, SITE.url).href;
 

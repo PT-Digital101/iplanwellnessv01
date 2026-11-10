@@ -1,6 +1,13 @@
 // Global site settings. URLs/paths live here so they can be aligned with the
 // existing WordPress permalinks (from the All in One SEO export) in one place.
 
+/**
+ * Pre-launch switch. While false, every page is noindex and robots.txt disallows crawling,
+ * so the workers.dev preview never competes with the live iplanwellness.com in Google.
+ * Set to true on domain launch day (then rebuild/deploy).
+ */
+export const LAUNCHED = false;
+
 export const SITE = {
 	name: 'iPlan Wellness',
 	legalName: 'iPlan Wellness',

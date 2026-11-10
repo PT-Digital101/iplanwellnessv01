@@ -45,3 +45,8 @@ The 83 blog posts in `src/content/blog/` were imported from the WordPress backup
 - Real photography for page heroes/sections (placeholders are marked `[ LABEL ]`; blog images are real).
 - Contact form endpoint (`SITE.contactFormAction`). Until set, submitting opens the visitor's e-mail app pre-filled to hello@iplandigital.com.
 - Brand film / showreel URLs (`SITE.brandFilmUrl`, `SITE.showreelUrl`) — play buttons appear once set.
+
+## Launch day
+
+1. Set `LAUNCHED = true` in `src/consts.ts` (removes the site-wide noindex and the robots.txt block).
+2. Deploy, attach the iplanwellness.com domain, then submit `/sitemap-index.xml` in Search Console.
