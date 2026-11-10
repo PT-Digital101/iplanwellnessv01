@@ -1,0 +1,11 @@
+Generated using the built-in image_gen tool.
+Final asset: src/assets/images/pages/wellness-insights-editorial-blog.webp
+
+Use case: photorealistic-natural
+Asset type: website hero photograph for Wellness Insights, the blog of a Thai wellness branding and marketing agency. Landscape 3:2.
+Primary request: a quiet editorial still-life of wellness reading and research in an authentic Bangkok creative studio: an open unbranded wellness journal showing abstract botanical photographs and indistinct editorial marks, a softly worn notebook, a simple pencil, a ceramic cup of herbal tea, and a small single leafy stem in a plain ceramic vase on a dark warm oak desk beside a window. Understated and thoughtfully arranged but not perfectly styled. No people.
+Scene/backdrop: a muted deep forest-green plaster wall, soft out-of-focus tropical greenery through the window. Brand palette of forest green, warm cream, muted sage, natural wood.
+Composition/framing: eye-level oblique view across the desk, rather than overhead. Journal is the clear focal point, objects grouped toward the center-right, all key objects within the middle half of the image vertically so a wide website crop works. Subtle darker breathing room on the left for the site's gradient overlay.
+Style/medium: believable on-location editorial photograph, 50mm lens, restrained depth of field, subtle film grain, tactile paper fibers and glaze imperfections, realistic optics and shadows.
+Lighting/mood: gentle lateral daylight, calm, curious, considered, professional and welcoming. Understated exposure, soft contrast, neutral white balance.
+Constraints: no readable text, no logos, no watermark. Avoid spa cliches, stacked stones, candles, floating elements, excessive foliage, dramatic sunbeams, oversaturated colors, glossy stock imagery, CGI, synthetic smooth surfaces, exaggerated bokeh, perfectly symmetrical arrangements.

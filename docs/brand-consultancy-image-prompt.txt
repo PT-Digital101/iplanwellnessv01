@@ -1,0 +1,10 @@
+Generated using the built-in image_gen tool.
+Final asset: src/assets/images/services/wellness-brand-strategy-materials.webp
+
+Use case: photorealistic-natural
+Asset type: landscape 3:2 service photograph for Brand Consultancy at a Thai wellness branding agency.
+Primary request: a candid close editorial photograph of a real wellness-brand strategy review at a dark oak worktable in a small Bangkok design studio. Two Thai creative strategists are present only as cropped linen-clothed torsos and relaxed forearms at the top and right edges; the focal point is the thoughtful brand work on the table. One hand rests naturally beside several large matte deep-forest-green and cream color cards, a single sage paper sample, a cream folded brand moodboard with botanical imagery and abstract unlabeled layout blocks, and one simple unlabeled amber skincare bottle with a cream cap. A softly worn open notebook with indistinct pencil marks. A small material selection, not a busy flat lay. Show a deliberate palette and the feeling of a working consultation.
+Composition: oblique close view from slightly above the table, natural asymmetrical arrangement, main materials and hand grouped centrally so it works in a landscape card and a narrow hero crop. Plausible scale, straight paper edges. Background softly suggests a forest-green studio wall and window light, minimal foliage.
+Style: authentic high-end editorial photography, tactile paper and wood grain, honest skin texture, subtle film grain, restrained depth of field, natural neutral white balance. Refined, grounded, human and calm. Warm cream, deep forest green, muted sage and natural brown wood. Green is in materials, not a green color cast over everything.
+Lighting: soft indirect window daylight, gentle realistic shadows, controlled highlights, no dramatic lighting.
+Constraints: no legible text, no logos, no watermarks. No neon screens, holograms, stock-office desks, posed smiling faces, handshakes, candles, stacked stones, CGI gloss, airbrushed textures, orange-teal grading, excessive props, oversaturation. Anatomically believable simple relaxed hands.
