@@ -1,7 +1,7 @@
 ---
 title: "สร้างแบรนด์ Wellness ยั่งยืน ด้วย Authenticity Marketing"
 slug: "authenticity-marketing-for-wellness-brand"
-description: "เจาะลึกการตลาดแบบ Authenticity กลยุทธ์สำคัญเพื่อสร้างแบรนด์ Wellness ที่ยั่งยืน เรียนรู้เทคนิคสร้างความจริงใจ ความน่าเชื่อถือ และครองใจลูกค้าในยุคใหม่"
+description: "Authenticity Marketing กลยุทธ์สร้างแบรนด์ Wellness ที่ยั่งยืน เรียนรู้วิธีสื่อสารอย่างจริงใจ สร้างความน่าเชื่อถือ และครองใจลูกค้าสายสุขภาพในยุคใหม่"
 pubDate: 2025-07-24T14:40:14+07:00
 updatedDate: 2025-08-18T15:03:59+07:00
 category: "Wellness Branding"

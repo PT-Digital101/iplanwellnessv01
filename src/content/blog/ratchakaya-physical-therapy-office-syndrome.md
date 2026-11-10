@@ -1,7 +1,7 @@
 ---
 title: "รัชตกายา คลินิกกายภาพบำบัด รักษา Office Syndrome ปวดเรื้อรัง"
 slug: "ratchakaya-physical-therapy-office-syndrome"
-description: "รัชตกายา คลินิกกายภาพบำบัด แก้ปัญหา Office Syndrome และอาการปวดเรื้อรังที่ต้นเหตุด้วยเทคโนโลยีขั้นสูง เช่น Shock Wave และ Ultrasound เพื่อคืนการเคลื่อนไหวและคุณภาพชีวิตที่ดีให้คุณ"
+description: "รัชตกายา คลินิกกายภาพบำบัด แก้ Office Syndrome และอาการปวดเรื้อรังที่ต้นเหตุ ด้วย Shock Wave และ Ultrasound คืนการเคลื่อนไหวและคุณภาพชีวิตที่ดี"
 pubDate: 2026-01-09T15:09:55+07:00
 updatedDate: 2026-01-14T17:00:49+07:00
 category: "Bangna Towers Health & Wellness 2025"

@@ -1,13 +1,13 @@
 ---
 title: "จัดโต๊ะทำงานตามหลัก Wellness สุขภาพดี เพิ่ม Productivity"
 slug: "wellness-workspace-setup"
-description: "เปลี่ยนโต๊ะทำงานของคุณให้เป็นพื้นที่สุขภาพดี! เรียนรู้วิธีจัดโต๊ะทำงานตามหลักสรีรศาสตร์ เพื่อเพิ่ม Productivity ลดอาการออฟฟิศซินโดรม อ่านเทคนิคง่าย ๆ ที่นี่"
+description: "จัดโต๊ะทำงานตามหลัก Wellness และสรีรศาสตร์ เปลี่ยนมุมทำงานให้เป็นพื้นที่สุขภาพดี ลดอาการออฟฟิศซินโดรม และเพิ่ม Productivity ด้วยเทคนิคง่าย ๆ"
 pubDate: 2025-07-05T14:27:00+07:00
 updatedDate: 2025-08-14T15:17:26+07:00
 category: "Lifestyle"
 categorySlug: "lifestyle"
 tags: ["Wellness", "Productivity"]
-focusKeyword: "Wellness"
+focusKeyword: "จัดโต๊ะทำงาน"
 heroImage: "blog/wellness-workspace-setup/wellness-workspace-setup-featured.webp"
 heroAlt: "จัดโต๊ะทำงานตามหลัก Wellness สุขภาพดี เพิ่ม Productivity"
 wpId: 1911

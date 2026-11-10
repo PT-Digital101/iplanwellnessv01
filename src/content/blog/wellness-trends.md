@@ -8,6 +8,8 @@ category: "Wellness"
 categorySlug: "wellness"
 heroImage: "blog/wellness-trends/wellness-trends-featured.webp"
 heroAlt: "เทรนด์คอนเทนต์สุขภาพ 2025"
+focusKeyword: "เทรนด์คอนเทนต์สุขภาพ"
+seoTitle: "เทรนด์คอนเทนต์สุขภาพ 2025 เล่ายังไงให้คนเชื่อและอยากแชร์"
 wpId: 1594
 ---
 

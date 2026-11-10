@@ -8,6 +8,7 @@ category: "Wellness"
 categorySlug: "wellness"
 heroImage: "blog/create-wellness-brands/create-wellness-brands-featured.webp"
 heroAlt: "สร้างแบรนด์ Wellness ยังไงให้โตไว แต่ยังดูน่าเชื่อถือ"
+focusKeyword: "สร้างแบรนด์ Wellness"
 wpId: 1581
 ---
 

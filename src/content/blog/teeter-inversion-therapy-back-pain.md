@@ -1,7 +1,7 @@
 ---
 title: "Teeter Thailand ยืดกระดูกสันหลัง แก้ปวดหลังเรื้อรัง"
 slug: "teeter-inversion-therapy-back-pain"
-description: "จบปัญหาปวดหลังเรื้อรังด้วย Teeter เครื่องยืดกระดูกสันหลังจากอเมริกา ใช้หลัก Inversion Therapy และแรงโน้มถ่วงธรรมชาติเพื่อลดแรงกดทับที่หมอนรองกระดูก"
+description: "Teeter Thailand เครื่องยืดกระดูกสันหลังจากอเมริกา ใช้หลัก Inversion Therapy และแรงโน้มถ่วงลดแรงกดทับหมอนรองกระดูก ช่วยจบปัญหาปวดหลังเรื้อรัง"
 pubDate: 2026-01-13T14:46:06+07:00
 updatedDate: 2026-01-14T16:47:56+07:00
 category: "Bangna Towers Health & Wellness 2025"
