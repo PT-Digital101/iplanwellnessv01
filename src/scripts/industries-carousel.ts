@@ -110,14 +110,19 @@ function desktop(root: HTMLElement, scroller: HTMLElement, track: HTMLElement) {
 		startTarget = target;
 		lastT = performance.now();
 		velocity = 0;
-		track.setPointerCapture(e.pointerId);
-		root.classList.add('is-dragging');
 	});
 	track.addEventListener('pointermove', (e) => {
 		if (!dragging) return;
 		const now = performance.now();
 		const dx = e.clientX - startX;
-		if (Math.abs(dx) > 6) moved = true;
+		// Only become a drag after real movement. Capturing the pointer on pointerdown would
+		// retarget the click to the track, so a plain click on a card would never reach its link.
+		if (!moved && Math.abs(dx) > 6) {
+			moved = true;
+			track.setPointerCapture(e.pointerId);
+			root.classList.add('is-dragging');
+		}
+		if (!moved) return;
 		target = startTarget - dx;
 		velocity = (lastX - e.clientX) / Math.max(1, now - lastT);
 		lastX = e.clientX;
