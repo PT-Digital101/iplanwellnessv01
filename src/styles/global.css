@@ -2299,3 +2299,83 @@ a.filter:hover {
 		white-space: nowrap;
 	}
 }
+
+/* ---------- About: video card (v3 About, updated) ---------- */
+.about-video {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: 16 / 9;
+	border-radius: 22px;
+	overflow: hidden;
+	background: var(--pine);
+	text-decoration: none;
+	box-shadow: 0 30px 60px -24px rgba(17, 34, 31, 0.6);
+}
+.about-video > img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.6s;
+}
+.about-video:hover > img {
+	transform: scale(1.03);
+}
+.about-video__shade {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(17, 34, 31, 0.15) 0%, rgba(17, 34, 31, 0.55) 100%);
+}
+.about-video__play {
+	position: relative;
+	width: 112px;
+	height: 112px;
+	border-radius: var(--r-pill);
+	background: var(--lime);
+	color: var(--forest);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 0 0 14px rgba(204, 246, 100, 0.18);
+	transition: transform 0.25s;
+}
+.about-video:hover .about-video__play {
+	transform: scale(1.06);
+}
+.about-video__badge {
+	position: absolute;
+	left: 24px;
+	bottom: 24px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 16px;
+	border-radius: var(--r-pill);
+	background: rgba(17, 34, 31, 0.85);
+	border: 1px solid var(--line);
+	color: var(--cream);
+	font-size: 14px;
+	font-weight: 500;
+}
+.about-video__badge span {
+	width: 8px;
+	height: 8px;
+	border-radius: var(--r-pill);
+	background: var(--lime);
+}
+@media (max-width: 600px) {
+	.about-video__play {
+		width: 72px;
+		height: 72px;
+		box-shadow: 0 0 0 8px rgba(204, 246, 100, 0.18);
+	}
+	.about-video__badge {
+		left: 12px;
+		bottom: 12px;
+		padding: 7px 12px;
+		font-size: 13px;
+	}
+}

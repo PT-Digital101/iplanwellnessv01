@@ -107,5 +107,9 @@
   "service-healthcare-marketing": {
     "src": "services/healthcare-marketing-nurse-patient-care.webp",
     "alt": "พยาบาลดูแลผู้ป่วยอย่างใส่ใจ – Healthcare Marketing สำหรับโรงพยาบาลและคลินิก"
+  },
+  "about-video": {
+    "src": "home/wellness-video-marketing-showreel-cover.webp",
+    "alt": "วิดีโอแนะนำ iPlan Wellness เอเจนซี่การตลาดและผลิตวิดีโอสำหรับธุรกิจ Wellness คลินิก และสปา"
   }
 }

@@ -4,7 +4,8 @@ import PageHero from '../components/PageHero.astro';
 import CtaCard from '../components/CtaCard.astro';
 import ClientLogos from '../components/ClientLogos.astro';
 import Icon from '../components/Icon.astro';
-import { PATHS } from '../consts';
+import Img from '../components/Img.astro';
+import { PATHS, SITE } from '../consts';
 import { ABOUT } from '../data/home';
 
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -48,6 +49,12 @@ const pad = (n: number) => String(n).padStart(2, '0');
 	<section class="lime-band" style="padding:96px var(--gutter)">
 		<div class="stack" style="max-width:1280px;margin:0 auto;gap:40px">
 			<h2 class="display t-h2 c-forest">Why Choose I Plan Wellness?<br />เหตุผลที่แบรนด์ชั้นนำเลือกเรา</h2>
+			<a href={SITE.showreelUrl} class="about-video" target="_blank" rel="noopener" aria-label="ดูวิดีโอ iPlan Wellness บน YouTube">
+				<Img name="about-video" sizes="(max-width: 1280px) 100vw, 1280px" />
+				<span class="about-video__shade" aria-hidden="true"></span>
+				<span class="about-video__play" aria-hidden="true"><Icon name="play" size={36} /></span>
+				<span class="about-video__badge"><span aria-hidden="true"></span>YouTube</span>
+			</a>
 			<ul class="cells" style="--cell-min:280px;--cell-h:280px;list-style:none;margin:0;padding:0">
 				{
 					ABOUT.why.map((w, i) => (
