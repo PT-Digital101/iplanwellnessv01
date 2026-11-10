@@ -33,7 +33,12 @@ const b64 = (s: string) => Buffer.from(s, 'utf8').toString('base64');
 // Health check: reports only whether each setting is present (never its value).
 export const GET: APIRoute = ({ locals }) => {
 	const env = ((locals as { runtime?: { env?: Env } }).runtime?.env ?? {}) as Env;
-	return json({ turnstileSecret: Boolean(env.TURNSTILE_SECRET), emailBinding: Boolean(env.EMAIL) });
+	return json({
+		turnstileSecret: Boolean(env.TURNSTILE_SECRET),
+		emailBinding: Boolean(env.EMAIL),
+		// Names only (helps spot a typo like "TURNSTILE" or a trailing space); values are never exposed.
+		settings: Object.keys(env).filter((k) => k !== 'ASSETS').map((k) => JSON.stringify(k)),
+	});
 };
 
 export const POST: APIRoute = async ({ request, locals }) => {
