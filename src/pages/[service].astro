@@ -1,0 +1,139 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaCard from '../components/CtaCard.astro';
+import Icon from '../components/Icon.astro';
+import { PATHS, SITE } from '../consts';
+import { SERVICES, getServicePage, type Service } from '../data/services';
+import { metaDescription } from '../lib/format';
+
+export const getStaticPaths = (() => SERVICES.map((service) => ({ params: { service: service.slug }, props: { service } }))) satisfies GetStaticPaths;
+
+const { service } = Astro.props as { service: Service };
+const page = getServicePage(service.slug);
+const pad = (n: number) => String(n).padStart(2, '0');
+
+const title = service.seoTitle ?? `${service.name} – ${service.nameTh}`;
+const description = service.seoDescription ?? metaDescription(page.intro[0] ?? service.summary);
+const url = new URL(PATHS.service(service.slug), SITE.url).href;
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	'@id': `${url}#service`,
+	name: service.name,
+	alternateName: service.nameTh,
+	serviceType: service.name,
+	description: metaDescription(page.intro[0] ?? service.summary, 300),
+	url,
+	areaServed: 'TH',
+	audience: { '@type': 'BusinessAudience', audienceType: page.fit.items.join(', ') },
+	provider: { '@id': `${SITE.url}/#organization` },
+	hasOfferCatalog: {
+		'@type': 'OfferCatalog',
+		name: page.process.h2.replace(/<[^>]+>/g, ''),
+		itemListElement: page.process.items.map((p) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: p.t.replace(/<[^>]+>/g, '') } })),
+	},
+};
+---
+
+<Layout title={title} description={description} image={service.image} schema={[schema]}>
+	<PageHero crumbs={[{ label: 'Home', href: PATHS.home }, { label: 'Our Services', href: PATHS.services }, { label: page.crumb }]} image={service.image}>
+		<h1 class="display t-page c-lime" set:html={page.h1} />
+		{page.subtitle && <p class="display t-sub" style="max-width:760px" set:html={page.subtitle} />}
+		{page.intro.map((p) => <p class="lead" set:html={p} />)}
+		<div class="btn-row">
+			<a href={PATHS.contact} class="btn">ปรึกษาฟรี <span aria-hidden="true">→</span></a>
+			<a href={PATHS.services} class="btn btn--outline">ดูบริการทั้งหมด <span aria-hidden="true">→</span></a>
+		</div>
+	</PageHero>
+
+	<!-- Suitable for -->
+	<section class="lime-band" style="padding:96px var(--gutter)">
+		<div class="stack" style="max-width:1280px;margin:0 auto;gap:40px">
+			<div class="section-head">
+				<h2 class="display t-h2 c-forest" set:html={page.fit.h2} />
+				{page.fit.intro.map((p) => <p class="c-forest" set:html={p} />)}
+			</div>
+			<ol class="cells" style="--cell-min:230px;list-style:none;margin:0;padding:0">
+				{
+					page.fit.items.map((item, i) => (
+						<li class="fit-cell">
+							<span class="fit-cell__num">{pad(i + 1)}</span>
+							<span class="fit-cell__label">{item}</span>
+						</li>
+					))
+				}
+			</ol>
+		</div>
+	</section>
+
+	<!-- Process / offering -->
+	<section class="container section stack" style="gap:32px">
+		<div class="section-head">
+			<h2 class="display t-h2 c-lime" set:html={page.process.h2} />
+			{page.process.intro.map((p) => <p set:html={p} />)}
+		</div>
+		<ol class="rows">
+			{
+				page.process.items.map((item, i) => (
+					<li class="row">
+						<span class="row__num">{pad(i + 1)}</span>
+						<h3 class="row__title" style="flex: 1 1 min(380px, 100%)" set:html={item.t} />
+						<div class="row__body" style="flex: 1.2 1 min(440px, 100%)">
+							{item.p.map((p) => <p set:html={p} />)}
+							{item.li.length > 0 && (
+								<ul class="checks">
+									{item.li.map((l) => (
+										<li>{l}</li>
+									))}
+								</ul>
+							)}
+						</div>
+					</li>
+				))
+			}
+		</ol>
+	</section>
+
+	<!-- Why us -->
+	<section class="container section section--flush-top stack" style="gap:48px">
+		<div class="section-head">
+			<h2 class="display t-h2 c-lime" set:html={page.why.h2} />
+		</div>
+		<ul class="cells" style={`--cell-min:${page.why.items.length <= 2 ? 520 : 300}px;list-style:none;margin:0;padding:0`}>
+			{
+				page.why.items.map((w, i) => (
+					<li class="why-card">
+						<span class="cell__top">
+							<span class="chip" aria-hidden="true">
+								<Icon name="arrow" />
+							</span>
+							<span class="cell__num">{pad(i + 1)}</span>
+						</span>
+						<h3 set:html={w.t} />
+						{w.lead.map((p) => (
+							<p class="why-card__lead" set:html={p} />
+						))}
+						{w.p.map((p) => (
+							<p class="why-card__text" set:html={p} />
+						))}
+						{w.li.length > 0 && (
+							<div class="why-card__gets">
+								{w.listTitle && <span class="why-card__gets-title">{w.listTitle}</span>}
+								<ul class="checks checks--sm">
+									{w.li.map((l) => (
+										<li>{l}</li>
+									))}
+								</ul>
+							</div>
+						)}
+					</li>
+				))
+			}
+		</ul>
+	</section>
+
+	<CtaCard />
+</Layout>

@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { PATHS } from '../consts';
+import Img from './Img.astro';
+import { formatDate } from '../lib/format';
+
+interface Props {
+	post: CollectionEntry<'blog'>;
+	excerpt?: boolean;
+	headingLevel?: 'h2' | 'h3';
+}
+const { post, excerpt = true, headingLevel: H = 'h3' } = Astro.props;
+const { title, description, pubDate, category, heroImage, heroAlt } = post.data;
+---
+
+<a href={PATHS.post(post)} class="post-card" data-category={category}>
+	<div class="post-card__media">
+		<Img src={heroImage} alt={heroAlt} sizes="(max-width: 800px) 100vw, 33vw" widths={[400, 640, 960]} />
+	</div>
+	<div class="post-card__body">
+		<span class="post-meta"><time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time><span class="post-meta__cat">{category}</span></span>
+		<H class="post-card__title">{title}</H>
+		{excerpt && <p class="post-card__text">{description}</p>}
+	</div>
+</a>

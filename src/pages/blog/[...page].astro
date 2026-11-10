@@ -1,0 +1,78 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PostCard from '../../components/PostCard.astro';
+import CtaCard from '../../components/CtaCard.astro';
+import CategoryNav from '../../components/CategoryNav.astro';
+import Pagination from '../../components/Pagination.astro';
+import Img from '../../components/Img.astro';
+import { PATHS, SITE } from '../../consts';
+import { formatDate } from '../../lib/format';
+import { pagePaths, pageHref } from '../../lib/paginate';
+
+export async function getStaticPaths() {
+	const posts = (await getCollection('blog', (p) => !p.data.noindex)).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+	const featured = posts.find((p) => p.data.featured) ?? posts[0];
+	const rest = posts.filter((p) => p !== featured);
+	return pagePaths(rest).map(({ page, ...props }) => ({ params: { page }, props: { ...props, featured } }));
+}
+
+type Post = CollectionEntry<'blog'>;
+const { items, current, total, featured } = Astro.props as { items: Post[]; current: number; total: number; featured: Post };
+const suffix = current > 1 ? ` – หน้า ${current}` : '';
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'Blog',
+	name: 'Wellness Insights – iPlan Wellness Blog',
+	url: new URL(pageHref(PATHS.blog, current), SITE.url).href,
+	publisher: { '@id': `${SITE.url}/#organization` },
+	blogPost: items.map((p) => ({ '@type': 'BlogPosting', headline: p.data.title, url: new URL(PATHS.post(p), SITE.url).href, datePublished: p.data.pubDate.toISOString() })),
+};
+---
+
+<Layout
+	title={`Blog บทความ Wellness Insights${suffix}`}
+	description={`บทความ Wellness Insights จาก iPlan Wellness อัปเดตความรู้ด้านการตลาด การสร้างแบรนด์ และเทรนด์ธุรกิจ Healthcare, Aesthetic และ Wellness${suffix}`}
+	image="blog-hero"
+	schema={[schema]}
+>
+	<PageHero crumbs={[{ label: 'Home', href: PATHS.home }, { label: 'Blog', href: current > 1 ? PATHS.blog : undefined }, ...(current > 1 ? [{ label: `หน้า ${current}` }] : [])]} image="blog-hero">
+		<h1 class="display t-page c-lime">Blog{current > 1 && <span class="c-cream" style="font-size:.45em;display:block;margin-top:8px">หน้า {current} จาก {total}</span>}</h1>
+	</PageHero>
+
+	<div class="container" style="padding-top:72px;padding-bottom:40px">
+		<CategoryNav />
+	</div>
+
+	{
+		current === 1 && featured && (
+			<div class="container" style="padding-bottom:24px">
+				<a href={PATHS.post(featured)} class="featured-post">
+					<div class="media-frame featured-post__media">
+						<Img src={featured.data.heroImage} alt={featured.data.heroAlt} sizes="(max-width: 1000px) 100vw, 640px" priority />
+					</div>
+					<div class="featured-post__body">
+						<time class="featured-post__date" datetime={featured.data.pubDate.toISOString()}>
+							{formatDate(featured.data.pubDate)}
+						</time>
+						<h2 class="featured-post__title">{featured.data.title}</h2>
+						<p>{featured.data.description}</p>
+						<span class="badge">{featured.data.category}</span>
+						<span style="display:flex;align-items:center;gap:10px;font-weight:700">
+							อ่านต่อ <span aria-hidden="true">→</span>
+						</span>
+					</div>
+				</a>
+			</div>
+		)
+	}
+
+	<section class="container" style="padding-bottom:var(--section-y)" aria-label="บทความ">
+		<div class="post-grid">{items.map((p) => <PostCard post={p} headingLevel="h2" />)}</div>
+		<Pagination current={current} total={total} base={PATHS.blog} />
+	</section>
+
+	<CtaCard />
+</Layout>

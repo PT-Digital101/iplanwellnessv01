@@ -1,0 +1,54 @@
+---
+// Every image on the site goes through this component:
+//  • source must be a .webp in src/assets/images
+//  • alt text is required (from src/data/images.json, or passed explicitly)
+//  • output is responsive WebP (srcset) with width/height to prevent layout shift
+import { Image } from 'astro:assets';
+import { assetFor, image } from '../lib/images';
+
+interface Props {
+	/** Key in src/data/images.json */
+	name?: string;
+	/** …or a path inside src/assets/images plus an explicit alt */
+	src?: string;
+	alt?: string;
+	/** Decorative images only (alt=""), use sparingly */
+	decorative?: boolean;
+	sizes?: string;
+	widths?: number[];
+	priority?: boolean;
+	class?: string;
+}
+
+const { name, src, alt, decorative = false, sizes = '100vw', widths, priority = false, class: className } = Astro.props;
+
+let asset;
+let altText: string;
+if (name) {
+	const r = image(name);
+	asset = r.asset;
+	altText = alt ?? r.alt;
+} else if (src) {
+	asset = assetFor(src);
+	altText = alt ?? '';
+} else {
+	throw new Error('<Img> needs `name` or `src`');
+}
+if (!decorative && !altText.trim()) throw new Error(`<Img> "${name ?? src}" is missing alt text`);
+
+const max = asset.width;
+const w = (widths ?? [400, 640, 960, 1280, 1600, 1920, 2400]).filter((x) => x < max).concat(max);
+---
+
+<Image
+	src={asset}
+	alt={decorative ? '' : altText}
+	format="webp"
+	quality={80}
+	widths={w}
+	sizes={sizes}
+	loading={priority ? 'eager' : 'lazy'}
+	decoding={priority ? 'sync' : 'async'}
+	fetchpriority={priority ? 'high' : 'auto'}
+	class={className}
+/>

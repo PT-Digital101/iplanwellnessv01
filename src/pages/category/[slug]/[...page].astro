@@ -1,0 +1,62 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import PostCard from '../../../components/PostCard.astro';
+import CtaCard from '../../../components/CtaCard.astro';
+import CategoryNav from '../../../components/CategoryNav.astro';
+import Pagination from '../../../components/Pagination.astro';
+import { PATHS, SITE } from '../../../consts';
+import categories from '../../../data/categories.json';
+import { metaDescription } from '../../../lib/format';
+import { pagePaths, pageHref } from '../../../lib/paginate';
+
+type Cat = (typeof categories)[number];
+type Post = CollectionEntry<'blog'>;
+
+export async function getStaticPaths() {
+	const all = (await getCollection('blog', (p) => !p.data.noindex)).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+	return categories.flatMap((cat) =>
+		pagePaths(all.filter((p) => p.data.categorySlug === cat.slug)).map(({ page, ...props }) => ({
+			params: { slug: cat.slug, page },
+			props: { ...props, cat, count: all.filter((p) => p.data.categorySlug === cat.slug).length },
+		})),
+	);
+}
+
+const { cat, items, current, total, count } = Astro.props as { cat: Cat; items: Post[]; current: number; total: number; count: number };
+const base = PATHS.category(cat.slug);
+const suffix = current > 1 ? ` – หน้า ${current}` : '';
+const description =
+	(cat.description
+		? metaDescription(cat.description, 140)
+		: `รวมบทความหมวด ${cat.name} จาก iPlan Wellness ความรู้ เทรนด์ และแนวคิดด้าน Wellness สำหรับธุรกิจสุขภาพและคนรักสุขภาพ (${count} บทความ)`) + suffix;
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'CollectionPage',
+	name: cat.name + suffix,
+	url: new URL(pageHref(base, current), SITE.url).href,
+	hasPart: items.map((p) => ({ '@type': 'BlogPosting', headline: p.data.title, url: new URL(PATHS.post(p), SITE.url).href })),
+};
+---
+
+<Layout title={`${cat.name} – บทความ Wellness Insights${suffix}`} description={description} image="blog-hero" schema={[schema]}>
+	<PageHero
+		crumbs={[{ label: 'Home', href: PATHS.home }, { label: 'Blog', href: PATHS.blog }, { label: cat.name, href: current > 1 ? base : undefined }, ...(current > 1 ? [{ label: `หน้า ${current}` }] : [])]}
+		image="blog-hero"
+	>
+		<h1 class="display t-page c-lime">{cat.name}{current > 1 && <span class="c-cream" style="font-size:.45em;display:block;margin-top:8px">หน้า {current} จาก {total}</span>}</h1>
+		{cat.description && current === 1 && <p class="lead">{cat.description}</p>}
+	</PageHero>
+
+	<div class="container" style="padding-top:72px;padding-bottom:40px">
+		<CategoryNav current={cat.slug} />
+	</div>
+
+	<section class="container" style="padding-bottom:var(--section-y)" aria-label={`บทความหมวด ${cat.name}`}>
+		<div class="post-grid">{items.map((p) => <PostCard post={p} headingLevel="h2" />)}</div>
+		<Pagination current={current} total={total} base={base} />
+	</section>
+
+	<CtaCard />
+</Layout>

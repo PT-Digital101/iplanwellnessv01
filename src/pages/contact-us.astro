@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Icon from '../components/Icon.astro';
+import { PATHS, CONTACT } from '../consts';
+
+const channels = [
+	{ icon: 'mail', label: 'อีเมล', value: CONTACT.email, href: `mailto:${CONTACT.email}` },
+	{ icon: 'phone', label: 'เบอร์โทรติดต่อ', value: CONTACT.phone, href: `tel:${CONTACT.phoneIntl}` },
+	{ icon: 'chat', label: 'LINE', value: CONTACT.line, href: CONTACT.lineUrl },
+] as const;
+const directions = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTACT.mapQuery)}`;
+const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(CONTACT.mapQuery)}&hl=th&z=16&output=embed`;
+---
+
+<Layout
+	title="Contact Us ติดต่อเรา – Start Planning With Us"
+	description="ติดต่อ I Plan Wellness เอเจนซี่การตลาดดิจิทัลสำหรับธุรกิจ Wellness สุขภาพ และการแพทย์ รับคำปรึกษาด้าน Branding, Website & SEO, Video Production โทร 0899876444 หรือ LINE @iplandigital"
+	image="contact-hero"
+	schema={[{ '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Contact iPlan Wellness', about: { '@id': 'https://iplanwellness.com/#organization' } }]}
+>
+	<PageHero crumbs={[{ label: 'Home', href: PATHS.home }, { label: 'Contact Us' }]} image="contact-hero">
+		<h1 class="display t-page c-lime">Start Planning<br /><span class="c-cream">With Us</span></h1>
+		<p class="lead">
+			I Plan Wellness คือเอเจนซี่การตลาดดิจิทัล (Digital Marketing Agency) ที่เชี่ยวชาญและมุ่งเน้นการให้บริการสำหรับธุรกิจ Wellness, สุขภาพ, และการแพทย์โดยเฉพาะ
+			เรามีบริการที่ครบวงจรตั้งแต่การเป็นที่ปรึกษา, การสร้างแบรนด์ (Branding), การรับทำเว็บไซต์และ SEO ไปจนถึงการผลิตวิดีโอ และการวางแผนการตลาดที่ออกแบบมาเพื่อตอบโจทย์คลินิก,
+			โรงพยาบาล, สปา และแบรนด์ผลิตภัณฑ์สุขภาพ หากคุณกำลังมองหาพาร์ทเนอร์มืออาชีพที่จะช่วยขับเคลื่อนธุรกิจของคุณให้เติบโตอย่างมีกลยุทธ์ ติดต่อเราได้ทันที!
+			เพื่อรับคำปรึกษาจากทีมงานมืออาชีพ
+		</p>
+	</PageHero>
+
+	<section class="container contact-info">
+		<div class="contact-info__list">
+			<h2 class="display c-lime" style="font-size:clamp(40px,4.8vw,71px);margin-bottom:16px">Contact Us</h2>
+			<ul class="channels">
+				{
+					channels.map((c) => (
+						<li>
+							<a href={c.href} class="channel" rel={c.icon === 'chat' ? 'noopener' : undefined}>
+								<span class="channel__icon" aria-hidden="true">
+									<Icon name={c.icon} size={22} stroke={1.7} />
+								</span>
+								<span class="channel__text">
+									<span class="channel__label">{c.label}</span>
+									<span class="channel__value">{c.value}</span>
+								</span>
+								<span class="channel__go" aria-hidden="true">
+									<Icon name="arrow" />
+								</span>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+		<div class="contact-info__panel">
+			<div class="stack" style="gap:14px">
+				<h3 class="contact-info__head"><Icon name="pin" size={22} stroke={1.7} /><span>ที่อยู่บริษัท</span></h3>
+				<address class="contact-info__address">{CONTACT.addressFull}</address>
+				<div class="btn-row"><a href={directions} class="btn btn--outline" target="_blank" rel="noopener" style="font-size:15px">Get directions <span aria-hidden="true">→</span></a></div>
+			</div>
+			<hr />
+			<div class="stack" style="gap:10px">
+				<h3 class="contact-info__head"><Icon name="clock" size={22} stroke={1.7} /><span>เวลาทำการ</span></h3>
+				<p class="contact-info__hours">{CONTACT.hours}</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="cta-wrap" aria-labelledby="form-h">
+		<div class="map-panel">
+			<div class="map-panel__map">
+				<iframe src={mapSrc} title="แผนที่ iPlan Wellness – อาคารศุภาคาร ช้อปปิ้งเซ็นเตอร์ ถนนเจริญนคร" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+			</div>
+			<ContactForm id="contact-page-form">
+				<h2 id="form-h" class="display full" style="font-size:34px;line-height:1.2">วางกลยุทธ์และสร้างแบรนด์<br /><span class="c-lime">ที่ตอบโจทย์ธุรกิจ Wellness ของคุณ</span></h2>
+				<p class="full muted" style="font-size:16px;margin-bottom:8px">
+					เราพร้อมยกระดับแบรนด์ของคุณให้โดดเด่น น่าเชื่อถือ และเป็นที่จดจำในธุรกิจ Wellness ด้วยทีมผู้เชี่ยวชาญที่เข้าใจทั้งสุขภาพ การแพทย์ และการตลาดอย่างแท้จริง
+				</p>
+			</ContactForm>
+		</div>
+	</section>
+</Layout>

@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaCard from '../components/CtaCard.astro';
+import ClientLogos from '../components/ClientLogos.astro';
+import Icon from '../components/Icon.astro';
+import { PATHS } from '../consts';
+import { ABOUT } from '../data/home';
+
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+
+<Layout
+	title="About Us เกี่ยวกับเรา – The Complete Wellness Agency"
+	description="I Plan Wellness เอเจนซี่ครบวงจรสำหรับธุรกิจ Wellness พาร์ทเนอร์เชิงกลยุทธ์ด้านการสร้างแบรนด์ การตลาดดิจิทัล และโซลูชันเทคโนโลยี สำหรับแบรนด์สายสุขภาพ"
+	image="about-hero"
+	schema={[{ '@context': 'https://schema.org', '@type': 'AboutPage', name: 'About iPlan Wellness', about: { '@id': 'https://iplanwellness.com/#organization' } }]}
+>
+	<PageHero crumbs={[{ label: 'Home', href: PATHS.home }, { label: 'About Us' }]} image="about-hero">
+		<h1 class="display t-page c-lime">The Complete<br />Wellness Agency</h1>
+		<p class="display t-sub">เอเจนซี่ครบวงจรสำหรับธุรกิจ Wellness</p>
+		<p class="lead">
+			I Plan Wellness คือเอเจนซีที่พร้อมเป็นพาร์ทเนอร์เชิงกลยุทธ์ให้กับแบรนด์สายสุขภาพของคุณ เพราะเราเข้าใจดีว่าการสร้างแบรนด์ในอุตสาหกรรม Wellness
+			เป็นมากกว่าเรื่องของธุรกิจ แต่คือการสร้างคุณค่าและความไว้วางใจให้แก่ผู้คน เราจึงสร้าง บริการสำหรับธุรกิจ Wellness ที่ครบวงจร ตั้งแต่การวางกลยุทธ์และสร้างแบรนด์,
+			การตลาดดิจิทัล ไปจนถึงโซลูชันเทคโนโลยี เพื่อให้ทุกส่วนทำงานสอดประสานกันอย่างมีเป้าหมาย และทำให้แบรนด์ของคุณเติบโตได้อย่างแข็งแกร่ง
+		</p>
+	</PageHero>
+
+	<section class="container section stack" style="gap:32px">
+		<h2 class="display t-h2 c-lime"><span class="c-cream">Our Approach</span><br />แนวทางการทำงานของเรา</h2>
+		<ol class="rows">
+			{
+				ABOUT.approach.map((a, i) => (
+					<li class="row">
+						<span class="row__num">{pad(i + 1)}</span>
+						<h3 class="row__title row__title--lg" style="flex: 1 1 min(320px, 100%)">
+							{a.t}
+						</h3>
+						<p class="row__body" style="flex: 1.4 1 min(460px, 100%)">
+							{a.d}
+						</p>
+					</li>
+				))
+			}
+		</ol>
+	</section>
+
+	<section class="lime-band" style="padding:96px var(--gutter)">
+		<div class="stack" style="max-width:1280px;margin:0 auto;gap:40px">
+			<h2 class="display t-h2 c-forest">Why Choose I Plan Wellness?<br />เหตุผลที่แบรนด์ชั้นนำเลือกเรา</h2>
+			<ul class="cells" style="--cell-min:280px;--cell-h:280px;list-style:none;margin:0;padding:0">
+				{
+					ABOUT.why.map((w, i) => (
+						<li class="cell">
+							<span class="cell__top">
+								<span class="chip chip--dark" aria-hidden="true">
+									<Icon name="arrow" />
+								</span>
+								<span class="cell__num">{pad(i + 1)}</span>
+							</span>
+							<h3 class="cell__title" style="font-size:24px">
+								{w.t}
+							</h3>
+							<p class="cell__text">{w.d}</p>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</section>
+
+	<section class="dark-band marquee marquee--dark" style="padding-block:64px;gap:24px" aria-labelledby="cl">
+		<h2 id="cl" class="serif c-lime" style="padding-inline:var(--gutter);font-size:30px;line-height:1.1">Clients &amp; Partners</h2>
+		<ClientLogos variant="white" />
+	</section>
+
+	<div style="height:var(--section-y)"></div>
+	<CtaCard />
+</Layout>

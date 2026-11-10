@@ -1,0 +1,46 @@
+---
+// Inner-page hero: midnight field, photo on the right, breadcrumb + H1.
+import { SITE } from '../consts';
+import Img from './Img.astro';
+
+export interface Crumb {
+	label: string;
+	href?: string;
+}
+interface Props {
+	crumbs: Crumb[];
+	image?: string;
+	imageAlt?: string;
+}
+const { crumbs, image, imageAlt } = Astro.props;
+
+const breadcrumbSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: crumbs.map((c, i) => ({
+		'@type': 'ListItem',
+		position: i + 1,
+		name: c.label,
+		item: new URL(c.href ?? Astro.url.pathname, SITE.url).href,
+	})),
+};
+---
+
+<section class="page-hero">
+	{
+		image && (
+			<div class="page-hero__media">
+				<Img name={image} alt={imageAlt} sizes="(max-width: 900px) 100vw, 46vw" priority />
+			</div>
+		)
+	}
+	<div class="container page-hero__content">
+		<nav aria-label="Breadcrumb" class="crumbs">
+			<ol>
+				{crumbs.map((c, i) => <li>{i < crumbs.length - 1 && c.href ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}
+			</ol>
+		</nav>
+		<slot />
+	</div>
+	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</section>

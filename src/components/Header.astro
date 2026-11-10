@@ -1,85 +1,190 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import { NAV, PATHS, CONTACT, CTA_LABEL } from '../consts';
+import { SERVICES } from '../data/services';
+import Img from './Img.astro';
+import Icon from './Icon.astro';
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 ---
 
-<header>
-	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
-		</div>
-		<div class="social-links">
-			<a href="https://m.webtoo.ls/@astro" target="_blank">
-				<span class="sr-only">Follow Astro on Mastodon</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-					><path
-						fill="currentColor"
-						d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z"
-					></path></svg
-				>
-			</a>
-			<a href="https://twitter.com/astrodotbuild" target="_blank">
-				<span class="sr-only">Follow Astro on Twitter</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-					><path
-						fill="currentColor"
-						d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
-					></path></svg
-				>
-			</a>
-			<a href="https://github.com/withastro/astro" target="_blank">
-				<span class="sr-only">Go to Astro's GitHub repo</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-					><path
-						fill="currentColor"
-						d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-					></path></svg
-				>
-			</a>
-		</div>
-	</nav>
-</header>
-<style>
-	header {
-		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
+<header class="site-header">
+	<div class="site-header__bar" data-header>
+		<a href={PATHS.home} class="site-header__logo" aria-label="iPlan Wellness – หน้าแรก">
+			<Img name="logo-white" widths={[120, 279]} sizes="60px" priority />
+		</a>
 
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.social-links,
-	.social-links a {
-		display: flex;
-	}
-	@media (max-width: 720px) {
-		.social-links {
-			display: none;
+		<nav aria-label="เมนูหลัก" class="nav">
+			{
+				NAV.map((item) =>
+					'mega' in item ? (
+						<span class="nav__mega" data-mega-trigger>
+							<a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+								{item.label}
+							</a>
+							<button type="button" class="nav__caret" aria-label="เปิดเมนู Our Services" aria-expanded="false" aria-controls="mega-menu" data-mega-toggle>
+								<Icon name="chevron" size={14} stroke={2} />
+							</button>
+						</span>
+					) : (
+						<a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+							{item.label}
+						</a>
+					),
+				)
+			}
+		</nav>
+
+		<a href={PATHS.contact} class="btn header-cta">{CTA_LABEL} <span aria-hidden="true">→</span></a>
+		<button type="button" class="menu-btn" aria-label="เปิดเมนู" aria-haspopup="dialog" aria-controls="mobile-menu" data-menu-open>
+			<Icon name="menu" size={22} stroke={2} />
+		</button>
+
+		<div id="mega-menu" class="mega" data-mega data-open="false" role="region" aria-label="Our Services">
+			<div class="mega__intro">
+				<span class="mega__title">Our Services</span>
+				<span class="muted">Healthcare &amp; Wellness</span>
+				<a href={PATHS.services} class="btn">View All Services <span aria-hidden="true">→</span></a>
+			</div>
+			<ul class="mega__grid" style="list-style:none;margin:0;padding:0">
+				{
+					SERVICES.map((s) => (
+						<li>
+							<a href={PATHS.service(s.slug)} class="mega__link" aria-current={path === PATHS.service(s.slug) ? 'page' : undefined}>
+								<span class="chip" aria-hidden="true">
+									<Icon name="arrow" size={16} stroke={2} />
+								</span>
+								{s.menuLabel}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</header>
+
+<dialog id="mobile-menu" class="mobile-menu" aria-label="เมนู" data-menu>
+	<div class="mobile-menu__top">
+		<a href={PATHS.home} aria-label="iPlan Wellness – หน้าแรก"><Img name="logo-white" widths={[120, 279]} sizes="56px" /></a>
+		<button type="button" class="mobile-menu__close" aria-label="ปิดเมนู" data-menu-close>
+			<Icon name="close" size={22} stroke={2} />
+		</button>
+	</div>
+	<nav aria-label="เมนูมือถือ" class="mobile-nav">
+		{
+			NAV.map((item) =>
+				'mega' in item ? (
+					<details open={path.startsWith(PATHS.services) || undefined}>
+						<summary>
+							{item.label}
+							<span class="plus" aria-hidden="true" />
+						</summary>
+						<div class="mobile-nav__sub">
+							{SERVICES.map((s) => (
+								<a href={PATHS.service(s.slug)} aria-current={path === PATHS.service(s.slug) ? 'page' : undefined}>
+									{s.menuLabel}
+								</a>
+							))}
+							<a href={PATHS.services} class="mobile-nav__all">
+								View All Services <span aria-hidden="true">→</span>
+							</a>
+						</div>
+					</details>
+				) : (
+					<a href={item.href} class="mobile-nav__item" aria-current={isCurrent(item.href) ? 'page' : undefined}>
+						{item.label}
+					</a>
+				),
+			)
 		}
-	}
-</style>
+	</nav>
+	<div class="mobile-menu__foot">
+		<a href={PATHS.contact} class="btn">{CTA_LABEL} <span aria-hidden="true">→</span></a>
+		<div class="mobile-menu__contact">
+			<a href={CONTACT.lineUrl} rel="noopener">LINE {CONTACT.line}</a>
+			<a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+			<a href={`tel:${CONTACT.phoneIntl}`}>{CONTACT.phone}</a>
+		</div>
+	</div>
+</dialog>
+
+<script>
+	const bar = document.querySelector<HTMLElement>('[data-header]');
+	const mega = document.querySelector<HTMLElement>('[data-mega]');
+	const toggle = document.querySelector<HTMLButtonElement>('[data-mega-toggle]');
+	const trigger = document.querySelector<HTMLElement>('[data-mega-trigger]');
+
+	let closeTimer: number | undefined;
+	let hoverOpenedAt = 0;
+	const setMega = (open: boolean) => {
+		window.clearTimeout(closeTimer);
+		if (!mega || !toggle) return;
+		if (open && mega.dataset.open !== 'true') hoverOpenedAt = 0;
+		mega.dataset.open = String(open);
+		toggle.setAttribute('aria-expanded', String(open));
+	};
+	const isOpen = () => mega?.dataset.open === 'true';
+
+	// Hover (mouse/trackpad only): open on the "Our Services" item or the panel itself,
+	// close after a short grace delay so moving the pointer down into the panel never drops it.
+	const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+	const onEnter = (e: PointerEvent) => {
+		if (canHover.matches && e.pointerType === 'mouse') {
+			const wasOpen = isOpen();
+			setMega(true);
+			if (!wasOpen) hoverOpenedAt = performance.now();
+		}
+	};
+	const onLeave = (e: PointerEvent) => {
+		if (!canHover.matches || e.pointerType !== 'mouse') return;
+		window.clearTimeout(closeTimer);
+		closeTimer = window.setTimeout(() => setMega(false), 220);
+	};
+	trigger?.addEventListener('pointerenter', onEnter);
+	trigger?.addEventListener('pointerleave', onLeave);
+	mega?.addEventListener('pointerenter', () => window.clearTimeout(closeTimer));
+	mega?.addEventListener('pointerleave', onLeave);
+	// Moving to another top-level link closes the panel straight away.
+	document.querySelectorAll<HTMLElement>('.nav > a, .header-cta, .site-header__logo').forEach((el) =>
+		el.addEventListener('pointerenter', (e) => {
+			if (e.pointerType === 'mouse' && isOpen()) setMega(false);
+		}),
+	);
+
+	// Click / keyboard
+	// A click that lands right after hover opened the panel should keep it open, not toggle it shut.
+	toggle?.addEventListener('click', () => {
+		if (isOpen() && performance.now() - hoverOpenedAt < 700) return;
+		setMega(!isOpen());
+	});
+	toggle?.addEventListener('keydown', (e) => {
+		if (e.key === 'ArrowDown') {
+			e.preventDefault();
+			setMega(true);
+			mega?.querySelector<HTMLAnchorElement>('a')?.focus();
+		}
+	});
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && isOpen()) {
+			setMega(false);
+			toggle?.focus();
+		}
+	});
+	document.addEventListener('click', (e) => {
+		if (isOpen() && !bar?.contains(e.target as Node)) setMega(false);
+	});
+	mega?.addEventListener('focusout', (e) => {
+		if (!mega.contains(e.relatedTarget as Node) && e.relatedTarget !== toggle) setMega(false);
+	});
+
+	const menu = document.querySelector<HTMLDialogElement>('[data-menu]');
+	const openBtn = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+	openBtn?.addEventListener('click', () => {
+		menu?.showModal();
+		openBtn.setAttribute('aria-expanded', 'true');
+	});
+	document.querySelector('[data-menu-close]')?.addEventListener('click', () => menu?.close());
+	menu?.addEventListener('close', () => openBtn?.setAttribute('aria-expanded', 'false'));
+	window.matchMedia('(min-width: 1001px)').addEventListener('change', (e) => e.matches && menu?.close());
+</script>

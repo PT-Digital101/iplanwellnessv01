@@ -1,0 +1,11 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+import legal from '../data/legal.json';
+---
+
+<LegalPage
+	title="Terms & Conditions ข้อกำหนดและเงื่อนไข"
+	description="ข้อกำหนดและเงื่อนไขการใช้งานเว็บไซต์ iPlan Wellness: การยอมรับเงื่อนไข การใช้บริการ ทรัพย์สินทางปัญญา ความถูกต้องของข้อมูล และความรับผิดชอบ"
+	crumb="Terms & Conditions"
+	{...legal.terms}
+/>

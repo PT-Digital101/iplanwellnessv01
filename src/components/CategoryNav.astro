@@ -1,0 +1,21 @@
+---
+// Category links (replace the old client-side filter so every category is a crawlable, paginated page).
+import { PATHS } from '../consts';
+import categories from '../data/categories.json';
+
+interface Props {
+	current?: string;
+}
+const { current } = Astro.props;
+---
+
+<nav class="filters" aria-label="หมวดหมู่บทความ">
+	<a href={PATHS.blog} class="filter" aria-current={!current ? 'page' : undefined}>ทั้งหมด</a>
+	{
+		categories.map((c) => (
+			<a href={PATHS.category(c.slug)} class="filter" aria-current={current === c.slug ? 'page' : undefined}>
+				{c.name}
+			</a>
+		))
+	}
+</nav>

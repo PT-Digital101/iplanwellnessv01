@@ -1,0 +1,78 @@
+---
+// Human-readable sitemap (linked in the footer). The XML sitemap for search engines is /sitemap-index.xml.
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { PATHS } from '../consts';
+import { SERVICES } from '../data/services';
+import categories from '../data/categories.json';
+
+const posts = (await getCollection('blog', (p) => !p.data.noindex)).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const pages = [
+	{ label: 'Home', href: PATHS.home },
+	{ label: 'Our Services', href: PATHS.services },
+	{ label: 'About Us', href: PATHS.about },
+	{ label: 'Blog', href: PATHS.blog },
+	{ label: 'Contact Us', href: PATHS.contact },
+	{ label: 'Privacy Policy', href: PATHS.privacy },
+	{ label: 'Terms & Conditions', href: PATHS.terms },
+];
+---
+
+<Layout title="Sitemap แผนผังเว็บไซต์" description="แผนผังเว็บไซต์ iPlan Wellness รวมทุกหน้า บริการ หมวดหมู่ และบทความ Wellness Insights ในที่เดียว">
+	<PageHero crumbs={[{ label: 'Home', href: PATHS.home }, { label: 'Sitemap' }]}>
+		<h1 class="display t-page c-lime">Sitemap</h1>
+		<p class="lead">ทุกหน้าในเว็บไซต์ iPlan Wellness</p>
+	</PageHero>
+
+	<section class="container section sitemap">
+		<div class="sitemap__col">
+			<h2>Pages</h2>
+			<ul>{pages.map((p) => <li><a href={p.href}>{p.label}</a></li>)}</ul>
+			<h2>Services</h2>
+			<ul>{SERVICES.map((s) => <li><a href={PATHS.service(s.slug)}>{s.name}</a></li>)}</ul>
+			<h2>Categories</h2>
+			<ul>{categories.map((c) => <li><a href={PATHS.category(c.slug)}>{c.name} ({c.count})</a></li>)}</ul>
+		</div>
+		<div class="sitemap__col">
+			<h2>Blog ({posts.length})</h2>
+			<ul>{posts.map((p) => <li><a href={PATHS.post(p)}>{p.data.title}</a></li>)}</ul>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.sitemap {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+		gap: 48px;
+	}
+	.sitemap__col {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+	.sitemap h2 {
+		font-family: var(--font-serif);
+		font-weight: 500;
+		font-size: 26px;
+		color: var(--lime);
+		margin-top: 16px;
+	}
+	.sitemap ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		border-top: 1px solid var(--line);
+	}
+	.sitemap li a {
+		display: block;
+		padding: 10px 0;
+		border-bottom: 1px solid var(--line);
+		color: var(--cream);
+		text-decoration: none;
+	}
+	.sitemap li a:hover {
+		color: var(--lime);
+	}
+</style>

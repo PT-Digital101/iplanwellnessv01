@@ -1,0 +1,47 @@
+---
+// Scrolling client-logo strip. variant: 'forest' logos for the lime band, 'white' for dark bands.
+import Img from './Img.astro';
+import { CLIENTS } from '../data/home';
+
+interface Props {
+	variant: 'forest' | 'white';
+}
+const { variant } = Astro.props;
+---
+
+<div class="marquee__track">
+	{
+		[0, 1].map((copy) => (
+			<ul class="marquee__list client-logos" aria-hidden={copy === 1 ? 'true' : undefined}>
+				{CLIENTS.map((c) => (
+					<li>
+						<Img src={`clients/${c.logo}-logo-${variant}.webp`} alt={`โลโก้ ${c.name} ลูกค้าของ iPlan Wellness`} sizes="190px" />
+					</li>
+				))}
+			</ul>
+		))
+	}
+</div>
+
+<style>
+	.client-logos {
+		align-items: center;
+		gap: 56px;
+		padding-right: 56px;
+	}
+	.client-logos li {
+		gap: 56px;
+	}
+	.client-logos :global(img) {
+		height: 56px;
+		width: auto;
+		max-width: 190px;
+		object-fit: contain;
+	}
+	@media (max-width: 700px) {
+		.client-logos :global(img) {
+			height: 40px;
+			max-width: 140px;
+		}
+	}
+</style>

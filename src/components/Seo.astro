@@ -1,0 +1,108 @@
+---
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { SITE, CONTACT, PATHS } from '../consts';
+import { image } from '../lib/images';
+
+export interface SeoProps {
+	title: string;
+	description: string;
+	/** Image key from src/data/images.json, or an imported asset */
+	image?: string | ImageMetadata;
+	imageAlt?: string;
+	type?: 'website' | 'article';
+	canonical?: string;
+	noindex?: boolean;
+	publishedTime?: Date;
+	modifiedTime?: Date;
+	/** Extra JSON-LD objects for this page */
+	schema?: Record<string, unknown>[];
+}
+
+const { title, description, image: img = 'og-default', imageAlt, type = 'website', canonical, noindex = false, publishedTime, modifiedTime, schema = [] } = Astro.props as SeoProps;
+
+// Preview builds (PUBLIC_NOINDEX=true) must never be indexed – they'd duplicate the real site.
+const previewNoindex = import.meta.env.PUBLIC_NOINDEX === 'true';
+const fullTitle = title.includes(SITE.name) ? title : `${title} | ${SITE.name}`;
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, SITE.url).href;
+
+const resolved = typeof img === 'string' ? image(img) : { asset: img, alt: imageAlt ?? title };
+const og = await getImage({ src: resolved.asset, format: 'webp', width: 1200, height: 630, fit: 'cover', quality: 80 });
+const ogURL = new URL(og.src, SITE.url).href;
+const logo = await getImage({ src: image('logo-forest').asset, format: 'webp' });
+
+const org = {
+	'@context': 'https://schema.org',
+	'@type': 'ProfessionalService',
+	'@id': `${SITE.url}/#organization`,
+	name: SITE.name,
+	alternateName: 'I Plan Wellness',
+	slogan: SITE.tagline,
+	description: SITE.description,
+	url: SITE.url,
+	logo: new URL(logo.src, SITE.url).href,
+	image: ogURL,
+	email: CONTACT.email,
+	telephone: CONTACT.phoneIntl,
+	address: { '@type': 'PostalAddress', ...CONTACT.address },
+	openingHoursSpecification: [
+		{
+			'@type': 'OpeningHoursSpecification',
+			dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+			opens: '09:00',
+			closes: '18:00',
+		},
+	],
+	areaServed: 'TH',
+	parentOrganization: { '@type': 'Organization', name: SITE.poweredBy },
+};
+const website = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	'@id': `${SITE.url}/#website`,
+	url: SITE.url,
+	name: SITE.name,
+	inLanguage: 'th-TH',
+	publisher: { '@id': `${SITE.url}/#organization` },
+};
+const graph = Astro.url.pathname === PATHS.home ? [org, website, ...schema] : [org, ...schema];
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+<meta name="robots" content={noindex || previewNoindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+<meta name="theme-color" content="#243C36" />
+<meta name="generator" content={Astro.generator} />
+
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title={`${SITE.name} Blog`} href="/rss.xml" />
+
+<meta property="og:locale" content={SITE.locale} />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogURL} />
+<meta property="og:image:type" content="image/webp" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={resolved.alt} />
+{publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
+{modifiedTime && <meta property="article:modified_time" content={modifiedTime.toISOString()} />}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogURL} />
+<meta name="twitter:image:alt" content={resolved.alt} />
+
+<script type="application/ld+json" set:html={JSON.stringify(graph.length === 1 ? graph[0] : graph)} />

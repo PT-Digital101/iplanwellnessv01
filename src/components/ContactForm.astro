@@ -1,0 +1,27 @@
+---
+import { SITE, CTA_LABEL } from '../consts';
+import { BUDGETS } from '../data/home';
+
+interface Props {
+	id?: string;
+	class?: string;
+}
+const { id = 'contact-form', class: className } = Astro.props;
+---
+
+<form id={id} class:list={['form', className]} method="post" action={SITE.contactFormAction || undefined} data-form="contact">
+	<slot />
+	<label class="field">First Name<input name="first_name" type="text" autocomplete="given-name" required /></label>
+	<label class="field">Last Name<input name="last_name" type="text" autocomplete="family-name" /></label>
+	<label class="field full">Email<input name="email" type="email" autocomplete="email" required /></label>
+	<label class="field">Website URL or Fanpage<input name="website" type="url" inputmode="url" placeholder="https://" /></label>
+	<label class="field"
+		>Your budgets<select name="budget">
+			<option value="">งบประมาณต่อเดือน โปรดเลือก 1 รายการ</option>
+			{BUDGETS.map((b) => <option>{b}</option>)}
+		</select></label
+	>
+	<label class="field full">Your Message<textarea name="message" rows="5"></textarea></label>
+	<button type="submit" class="btn full">{CTA_LABEL} <span aria-hidden="true">→</span></button>
+	<p class="form__status full" role="status" data-status></p>
+</form>

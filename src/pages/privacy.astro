@@ -1,0 +1,11 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+import legal from '../data/legal.json';
+---
+
+<LegalPage
+	title="Privacy Policy นโยบายความเป็นส่วนตัว"
+	description="นโยบายความเป็นส่วนตัวของ iPlan Wellness: การเก็บรวบรวม การใช้ การเก็บรักษา และการเปิดเผยข้อมูลส่วนบุคคล การใช้คุกกี้ และสิทธิของผู้ใช้งาน"
+	crumb="Privacy Policy"
+	{...legal.privacy}
+/>

@@ -20,6 +20,7 @@
 		"typescript": "5.9.3"
 	},
 	"devDependencies": {
+		"@astrojs/check": "^0.9.4",
 		"wrangler": "4.136.1"
 	},
 	"engines": {
@@ -30,10 +31,14 @@
 		"astro": "astro",
 		"build": "astro build",
 		"cf-typegen": "wrangler types",
-		"check": "astro build && tsc && wrangler deploy --dry-run",
-		"deploy": "wrangler deploy",
+		"check": "astro check && astro build && node scripts/audit.mjs && wrangler deploy --dry-run",
+		"deploy": "astro build && node scripts/audit.mjs && wrangler deploy",
 		"dev": "astro dev",
-		"preview": "astro build && wrangler dev"
+		"preview": "astro build && wrangler dev",
+		"images": "node scripts/to-webp.mjs",
+		"images:placeholders": "node scripts/placeholders.mjs",
+		"audit": "node scripts/audit.mjs",
+		"deploy:preview": "PUBLIC_NOINDEX=true astro build && wrangler deploy"
 	},
 	"type": "module"
 }

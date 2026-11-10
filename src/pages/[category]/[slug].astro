@@ -1,0 +1,177 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Img from '../../components/Img.astro';
+import PostCard from '../../components/PostCard.astro';
+import CtaCard from '../../components/CtaCard.astro';
+import PostNav from '../../components/PostNav.astro';
+import { PATHS, SITE } from '../../consts';
+import { assetFor } from '../../lib/images';
+import { formatDate, metaDescription } from '../../lib/format';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({ params: { category: post.data.categorySlug, slug: post.data.slug }, props: { post } }));
+}
+
+const { post } = Astro.props as { post: CollectionEntry<'blog'> };
+const { Content, headings } = await render(post);
+const d = post.data;
+const toc = headings.filter((h) => h.depth === 2);
+const url = new URL(PATHS.post(post), SITE.url).href;
+
+const all = await getCollection('blog', (p) => !p.data.noindex);
+const byDate = [...all].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const idx = byDate.findIndex((p) => p.id === post.id);
+const newer = idx > 0 ? byDate[idx - 1] : undefined;
+const older = idx >= 0 ? byDate[idx + 1] : undefined;
+const related = all
+	.filter((p) => p.id !== post.id)
+	.sort((a, b) => Number(b.data.category === d.category) - Number(a.data.category === d.category) || b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+
+const hero = assetFor(d.heroImage);
+const schema = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		headline: d.title,
+		description: d.description,
+		image: new URL(hero.src, SITE.url).href,
+		datePublished: d.pubDate.toISOString(),
+		dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
+		articleSection: d.category,
+		keywords: [d.focusKeyword, ...d.tags].filter(Boolean).join(', ') || undefined,
+		inLanguage: 'th-TH',
+		mainEntityOfPage: url,
+		author: { '@id': `${SITE.url}/#organization` },
+		publisher: { '@id': `${SITE.url}/#organization` },
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url + '/' },
+			{ '@type': 'ListItem', position: 2, name: 'Blog', item: new URL(PATHS.blog, SITE.url).href },
+			{ '@type': 'ListItem', position: 3, name: d.category, item: new URL(PATHS.category(d.categorySlug), SITE.url).href },
+			{ '@type': 'ListItem', position: 4, name: d.title, item: url },
+		],
+	},
+];
+const share = [
+	{ label: 'LINE', href: `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}` },
+	{ label: 'Facebook', href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}` },
+	{ label: 'X', href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(d.title)}` },
+];
+---
+
+<Layout
+	title={d.seoTitle ?? d.title}
+	description={metaDescription(d.description)}
+	image={hero}
+	imageAlt={d.heroAlt}
+	type="article"
+	canonical={d.canonical}
+	noindex={d.noindex}
+	publishedTime={d.pubDate}
+	modifiedTime={d.updatedDate}
+	schema={schema}
+>
+	<section class="post-hero">
+		<div class="post-hero__head">
+			<nav aria-label="Breadcrumb" class="crumbs">
+				<ol>
+					<li><a href={PATHS.home}>Home</a></li>
+					<li><a href={PATHS.blog}>Blog</a></li>
+					<li><a href={PATHS.category(d.categorySlug)}>{d.category}</a></li>
+				</ol>
+			</nav>
+			<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+				<span class="badge badge--lime">{d.category}</span>
+				<time class="muted" style="font-size:14px;letter-spacing:1px" datetime={d.pubDate.toISOString()}>{formatDate(d.pubDate)}</time>
+			</div>
+			<h1 class="display" style="font-size:clamp(34px,4.6vw,64px);line-height:1.2">{d.title}</h1>
+		</div>
+		<div class="post-hero__figure">
+			<div class="media-frame"><Img src={d.heroImage} alt={d.heroAlt} sizes="(max-width: 1280px) 100vw, 1200px" priority /></div>
+		</div>
+	</section>
+
+	<div class="post-layout">
+		<aside class="post-aside">
+			{
+				toc.length > 0 && (
+					<nav class="toc" aria-label="On this page">
+						<span class="toc__title">ON THIS PAGE</span>
+						<ol>
+							{toc.map((h) => (
+								<li>
+									<a href={`#${h.slug}`}>{h.text}</a>
+								</li>
+							))}
+						</ol>
+					</nav>
+				)
+			}
+			<div class="stack" style="gap:12px">
+				<span class="toc__title" style="padding:0">SHARE</span>
+				<div class="share">
+					{
+						share.map((s) => (
+							<a href={s.href} target="_blank" rel="noopener">
+								{s.label}
+							</a>
+						))
+					}
+					<button type="button" data-copy={url}>Copy link</button>
+				</div>
+			</div>
+		</aside>
+
+		<article class="prose">
+			<Content />
+			<div class="post-foot">
+				<div class="btn-row">
+					<a class="tag" href={PATHS.category(d.categorySlug)}>#{d.category}</a>
+					{d.tags.map((t) => <span class="tag">#{t}</span>)}
+				</div>
+				<a href={PATHS.blog} class="btn btn--outline">กลับไปหน้า Blog <span aria-hidden="true">→</span></a>
+			</div>
+		</article>
+	</div>
+
+	<PostNav prev={older} next={newer} />
+
+	{
+		related.length > 0 && (
+			<section class="dark-band" style="padding:96px var(--gutter)" aria-labelledby="related-h">
+				<div class="stack" style="max-width:1280px;margin:0 auto;gap:40px">
+					<h2 id="related-h" class="display t-h2 c-lime">
+						Related Posts
+					</h2>
+					<div class="post-grid" style="--post-min:340px">
+						{related.map((p) => (
+							<PostCard post={p} excerpt={false} />
+						))}
+					</div>
+				</div>
+			</section>
+		)
+	}
+
+	<div style="height:var(--section-y)"></div>
+	<CtaCard />
+</Layout>
+
+<script>
+	document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((b) =>
+		b.addEventListener('click', async () => {
+			try {
+				await navigator.clipboard.writeText(b.dataset.copy!);
+				b.textContent = 'Copied ✓';
+			} catch {
+				b.textContent = 'Copy failed';
+			}
+		}),
+	);
+</script>

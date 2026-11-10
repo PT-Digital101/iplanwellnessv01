@@ -1,0 +1,11 @@
+# 301s for WordPress-only URLs. All page/post/category URLs are kept identical, so they need no redirect.
+/feed/                       /rss.xml               301
+/feed                        /rss.xml               301
+/sitemap_index.xml           /sitemap-index.xml     301
+/page-sitemap.xml            /sitemap-index.xml     301
+/post-sitemap.xml            /sitemap-index.xml     301
+/category-sitemap.xml        /sitemap-index.xml     301
+/home/                       /                      301
+/privacy-policy/             /privacy/              301
+/terms-and-conditions/       /terms-conditions/     301
+/category/:cat/feed/         /rss.xml               301

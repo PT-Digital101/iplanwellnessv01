@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { PATHS } from '../consts';
+---
+
+<Layout title="ไม่พบหน้าที่คุณต้องการ (404)" description="ไม่พบหน้าที่คุณต้องการ กลับสู่หน้าแรกของ iPlan Wellness" noindex>
+	<section class="container not-found">
+		<span class="eyebrow">Error 404</span>
+		<h1 class="display t-page c-lime">ไม่พบหน้านี้</h1>
+		<p class="lead">หน้าที่คุณค้นหาอาจถูกย้ายหรือไม่มีอยู่แล้ว ลองกลับไปที่หน้าแรกหรือดูบริการของเรา</p>
+		<div class="btn-row">
+			<a href={PATHS.home} class="btn">กลับหน้าแรก <span aria-hidden="true">→</span></a>
+			<a href={PATHS.services} class="btn btn--outline">ดูบริการทั้งหมด</a>
+		</div>
+	</section>
+</Layout>

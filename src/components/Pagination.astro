@@ -1,0 +1,131 @@
+---
+import Icon from './Icon.astro';
+import { pageHref } from '../lib/paginate';
+
+interface Props {
+	current: number;
+	total: number;
+	/** Base path, e.g. "/blog/" – page N lives at `${base}page/N/` (WordPress style) */
+	base: string;
+}
+const { current: cur, total, base } = Astro.props;
+const href = (n: number) => pageHref(base, n);
+const nums: (number | '…')[] = [];
+for (let n = 1; n <= total; n++) {
+	if (n === 1 || n === total || Math.abs(n - cur) <= 2) nums.push(n);
+	else if (nums[nums.length - 1] !== '…') nums.push('…');
+}
+---
+
+{
+	total > 1 && (
+		<nav class="pagination" aria-label="เลขหน้าบทความ">
+			{cur > 1 ? (
+				<a class="pagination__step" href={href(cur - 1)} rel="prev">
+					<span style="transform:rotate(180deg);display:inline-flex">
+						<Icon name="arrow" size={18} />
+					</span>
+					<span class="pagination__label">ก่อนหน้า</span>
+				</a>
+			) : (
+				<span class="pagination__step" aria-disabled="true">
+					<span style="transform:rotate(180deg);display:inline-flex">
+						<Icon name="arrow" size={18} />
+					</span>
+					<span class="pagination__label">ก่อนหน้า</span>
+				</span>
+			)}
+			<ol class="pagination__nums">
+				{nums.map((n) =>
+					n === '…' ? (
+						<li class="pagination__gap" aria-hidden="true">
+							…
+						</li>
+					) : (
+						<li>
+							<a href={href(n)} class="pagination__num" aria-current={n === cur ? 'page' : undefined} aria-label={`หน้า ${n}`}>
+								{n}
+							</a>
+						</li>
+					),
+				)}
+			</ol>
+			{cur < total ? (
+				<a class="pagination__step" href={href(cur + 1)} rel="next">
+					<span class="pagination__label">ถัดไป</span>
+					<Icon name="arrow" size={18} />
+				</a>
+			) : (
+				<span class="pagination__step" aria-disabled="true">
+					<span class="pagination__label">ถัดไป</span>
+					<Icon name="arrow" size={18} />
+				</span>
+			)}
+		</nav>
+	)
+}
+
+<style>
+	.pagination {
+		margin-top: 56px;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+	}
+	.pagination__nums {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.pagination__num,
+	.pagination__step {
+		min-width: 48px;
+		height: 48px;
+		padding: 0 14px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		border-radius: var(--r-btn);
+		border: 1px solid var(--line-lime);
+		color: var(--lime);
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 15px;
+	}
+	.pagination__num:hover,
+	a.pagination__step:hover {
+		background: var(--lime);
+		color: var(--forest);
+	}
+	.pagination__num[aria-current='page'] {
+		background: var(--lime);
+		border-color: var(--lime);
+		color: var(--forest);
+	}
+	.pagination__step[aria-disabled='true'] {
+		opacity: 0.35;
+	}
+	.pagination__gap {
+		min-width: 24px;
+		height: 48px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--sand);
+	}
+	@media (max-width: 600px) {
+		.pagination__label {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+			clip: rect(0 0 0 0);
+		}
+	}
+</style>

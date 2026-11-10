@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaCard from '../components/CtaCard.astro';
+import Icon from '../components/Icon.astro';
+import { PATHS, SITE } from '../consts';
+import { SERVICES, SERVICES_GRID_ORDER, getService } from '../data/services';
+
+const pad = (n: number) => String(n).padStart(2, '0');
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'ItemList',
+	name: 'Our Services – Healthcare & Wellness',
+	itemListElement: SERVICES.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.name, url: new URL(PATHS.service(s.slug), SITE.url).href })),
+};
+---
+
+<Layout
+	title="บริการของเรา Healthcare & Wellness Marketing ครบวงจร"
+	description="บริการครบวงจรสำหรับธุรกิจ Healthcare และ Wellness: Wellness Branding, Medical Marketing, Wellness Tourism, Aesthetic Clinic Marketing, Video Production, Website + SEO, AI Marketing และ Health Tech"
+	image="services-hero"
+	schema={[schema]}
+>
+	<PageHero crumbs={[{ label: 'Home', href: PATHS.home }, { label: 'Our Services' }]} image="services-hero">
+		<h1 class="display t-page c-lime">Our Services<br /><span class="c-cream">Healthcare &amp; Wellness</span></h1>
+		<p class="lead">ไม่ว่าเป้าหมายของคุณคือการสร้างแบรนด์ใหม่ หรือขยายธุรกิจให้เติบโต เราคือพาร์ทเนอร์ที่พร้อมเปลี่ยนวิสัยทัศน์ของคุณให้เป็นความสำเร็จที่วัดผลได้จริง</p>
+	</PageHero>
+
+	<section class="container section" style="padding-bottom:96px">
+		<ol class="rows">
+			{
+				SERVICES.map((s, i) => (
+					<li class="row row--center">
+						<span class="row__num">{pad(i + 1)}</span>
+						<h2 class="row__title row__title--md">
+							<a href={PATHS.service(s.slug)} style="color:inherit;text-decoration:none">
+								{s.nameTh}
+							</a>
+						</h2>
+						<p class="row__body" style="flex: 1.5 1 min(440px, 100%)">
+							{s.summary}
+						</p>
+						<a href={PATHS.service(s.slug)} class="row__go" aria-label={`ดูบริการ ${s.name}`}>
+							<Icon name="arrow" size={22} />
+						</a>
+					</li>
+				))
+			}
+		</ol>
+	</section>
+
+	<section class="lime-band" style="padding:96px var(--gutter)">
+		<div class="stack" style="max-width:1280px;margin:0 auto;gap:40px">
+			<h2 class="display t-h2 c-forest">บริการของเรา</h2>
+			<ul class="cells" style="--cell-min:290px;--cell-h:260px;list-style:none;margin:0;padding:0">
+				{
+					SERVICES_GRID_ORDER.map((slug, i) => {
+						const s = getService(slug)!;
+						return (
+							<li>
+								<a href={PATHS.service(s.slug)} class="cell" style="height:100%">
+									<span class="cell__top">
+										<span class="chip chip--dark" aria-hidden="true">
+											<Icon name="arrow" />
+										</span>
+										<span class="cell__num">{pad(i + 1)}</span>
+									</span>
+									<h3 class="cell__title" style="font-size:27px">
+										{s.name}
+									</h3>
+									<p class="cell__text">{s.short}</p>
+								</a>
+							</li>
+						);
+					})
+				}
+			</ul>
+		</div>
+	</section>
+
+	<div style="height:var(--section-y)"></div>
+	<CtaCard />
+</Layout>

@@ -1,0 +1,111 @@
+{
+  "_readme": "Single source of truth for site images. Every file lives in src/assets/images/<src> and MUST be .webp with a descriptive kebab-case name. Replace a placeholder by dropping a real .webp with the same file name (or run `npm run images -- <file> --to <src>`), then update its alt text here. Blog images are set in each post's frontmatter (heroImage + heroAlt).",
+  "logo-white": {
+    "src": "brand/iplan-wellness-logo-white.webp",
+    "alt": "iPlan Wellness โลโก้ เอเจนซี่การตลาดดิจิทัลสำหรับธุรกิจ Healthcare และ Wellness",
+    "width": 279,
+    "height": 183
+  },
+  "logo-forest": {
+    "src": "brand/iplan-wellness-logo-forest.webp",
+    "alt": "iPlan Wellness โลโก้",
+    "width": 279,
+    "height": 183
+  },
+  "og-default": {
+    "src": "home/wellness-meditation-green-water-corridor.webp",
+    "alt": "iPlan Wellness – Healthcare and Wellness Digital Marketing Agency"
+  },
+  "home-hero": {
+    "src": "home/wellness-meditation-green-water-corridor.webp",
+    "alt": "บุคคลนั่งสมาธิในทางเดินน้ำที่อาบด้วยแสงสีเขียว สื่อถึงความสงบและสุขภาวะ – iPlan Wellness เอเจนซี่การตลาดดิจิทัลสำหรับธุรกิจ Healthcare และ Wellness"
+  },
+  "home-film": {
+    "src": "home/iplan-wellness-brand-film-cover.webp",
+    "alt": "ตัวแทนทีม iPlan Wellness แนะนำบริการสร้างแบรนด์และการตลาดดิจิทัลสำหรับธุรกิจ Wellness คลินิก และสปา"
+  },
+  "home-showreel": {
+    "src": "home/wellness-video-marketing-showreel-cover.webp",
+    "alt": "บริการรับทำการตลาดวิดีโอสำหรับธุรกิจ Wellness คลินิก และสปา เปลี่ยนผู้ชมให้เป็นลูกค้า"
+  },
+  "industry-wellness-tourism": {
+    "src": "industries/wellness-resort-spa-garden-treatment.webp",
+    "alt": "นักบำบัดเตรียมเตียงนวดกลางสวนของรีสอร์ตเพื่อสุขภาพ – การตลาดท่องเที่ยวเชิงสุขภาพ Wellness Tourism"
+  },
+  "industry-aesthetic-clinic": {
+    "src": "industries/aesthetic-clinic-facial-treatment.webp",
+    "alt": "ผู้เชี่ยวชาญทำทรีตเมนต์มาสก์หน้าให้ลูกค้าในคลินิกเสริมความงาม"
+  },
+  "industry-hospital": {
+    "src": "industries/doctor-patient-health-check.webp",
+    "alt": "แพทย์วัดความดันโลหิตและพูดคุยกับผู้ป่วยในศูนย์สุขภาพ"
+  },
+  "industry-spa-massage": {
+    "src": "industries/spa-relaxation-lounge.webp",
+    "alt": "ลูกค้าผ่อนคลายพร้อมเครื่องดื่มอุ่น ๆ ในห้องพักผ่อนของสปา"
+  },
+  "industry-wellness-product": {
+    "src": "industries/wellness-skincare-product-consultation.webp",
+    "alt": "พนักงานแนะนำผลิตภัณฑ์สกินแคร์และผลิตภัณฑ์เพื่อสุขภาพให้ลูกค้าในร้าน"
+  },
+  "services-hero": {
+    "src": "industries/wellness-skincare-product-consultation.webp",
+    "alt": "ที่ปรึกษาแนะนำผลิตภัณฑ์เพื่อสุขภาพ – บริการการตลาดและสร้างแบรนด์สำหรับธุรกิจ Healthcare และ Wellness"
+  },
+  "about-hero": {
+    "src": "pages/wellness-resort-therapist-sunset.webp",
+    "alt": "นักบำบัดเตรียมพื้นที่นวดกลางแจ้งยามพระอาทิตย์ตกที่ Wellness Resort – iPlan Wellness เอเจนซี่ครบวงจรสำหรับธุรกิจ Wellness"
+  },
+  "blog-hero": {
+    "src": "home/wellness-meditation-green-water-corridor.webp",
+    "alt": "บุคคลนั่งสมาธิในทางเดินน้ำแสงสีเขียว – บทความ Wellness Insights จาก iPlan Wellness"
+  },
+  "contact-hero": {
+    "src": "home/iplan-wellness-brand-film-cover.webp",
+    "alt": "ตัวแทนทีม iPlan Wellness พร้อมให้คำปรึกษาด้านการสร้างแบรนด์และการตลาดสำหรับธุรกิจ Wellness"
+  },
+  "service-wellness-branding": {
+    "src": "industries/wellness-resort-spa-garden-treatment.webp",
+    "alt": "นักบำบัดในสวนของ Wellness Resort – บริการสร้างแบรนด์ Wellness สำหรับธุรกิจสุขภาพและความงาม"
+  },
+  "service-medical-marketing": {
+    "src": "industries/doctor-patient-health-check.webp",
+    "alt": "แพทย์ตรวจสุขภาพผู้ป่วยอย่างใส่ใจ – การตลาดสายสุขภาพ Wellness & Medical Marketing"
+  },
+  "service-wellness-tourism": {
+    "src": "industries/spa-relaxation-lounge.webp",
+    "alt": "ลูกค้าพักผ่อนในเลานจ์ของสปาและรีสอร์ต – การตลาดท่องเที่ยวเชิงสุขภาพ Wellness Tourism"
+  },
+  "service-aesthetic-clinic": {
+    "src": "industries/aesthetic-clinic-facial-treatment.webp",
+    "alt": "ทรีตเมนต์ผิวหน้าในคลินิกความงาม – บริการการตลาดสำหรับคลินิกความงาม"
+  },
+  "service-video-production": {
+    "src": "services/wellness-video-production-team-studio.webp",
+    "alt": "ทีมงานผลิตวิดีโอกำลังถ่ายทำในสตูดิโอ – บริการผลิตวิดีโอสำหรับธุรกิจ Wellness"
+  },
+  "service-brand-consultancy": {
+    "src": "services/brand-consultancy-team-workspace.webp",
+    "alt": "ทีมที่ปรึกษาแบรนด์ทำงานร่วมกันในออฟฟิศ – Brand Consultancy สำหรับธุรกิจ Healthcare และ Wellness"
+  },
+  "service-website-seo": {
+    "src": "services/website-seo-development-team.webp",
+    "alt": "ทีมพัฒนาเว็บไซต์และ SEO ทำงานหน้าจอคอมพิวเตอร์ – บริการสร้างเว็บไซต์และ SEO สำหรับธุรกิจสุขภาพ"
+  },
+  "service-ai-marketing": {
+    "src": "services/ai-marketing-digital-interface.webp",
+    "alt": "ผู้หญิงใช้แท็บเล็ตควบคุมอินเทอร์เฟซดิจิทัล – บริการ AI Marketing สำหรับธุรกิจสุขภาพ"
+  },
+  "service-health-tech": {
+    "src": "services/clinic-line-booking-crm-system.webp",
+    "alt": "พนักงานคลินิกความงามจัดการนัดหมายลูกค้าผ่าน LINE – ระบบจองคิวและ CRM สำหรับคลินิก"
+  },
+  "service-wellness-marketplace": {
+    "src": "services/wellness-marketplace-shopping-destination.webp",
+    "alt": "ศูนย์การค้าเพื่อสุขภาพท่ามกลางต้นไม้ – Wellness Marketplace ขยายช่องทางการขายสินค้าสุขภาพ"
+  },
+  "service-healthcare-marketing": {
+    "src": "services/healthcare-marketing-nurse-patient-care.webp",
+    "alt": "พยาบาลดูแลผู้ป่วยอย่างใส่ใจ – Healthcare Marketing สำหรับโรงพยาบาลและคลินิก"
+  }
+}

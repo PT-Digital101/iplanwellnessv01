@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+import Seo, { type SeoProps } from '../components/Seo.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, CONTACT } from '../consts';
+
+type Props = SeoProps;
+const props = Astro.props;
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+	<head>
+		<Seo {...props} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap"
+		/>
+		<slot name="head" />
+	</head>
+	<body>
+		<a class="skip-link" href="#main">ข้ามไปยังเนื้อหา</a>
+		<Header />
+		<main id="main">
+			<slot />
+		</main>
+		<Footer />
+
+		<script define:vars={{ email: CONTACT.email }}>
+			// Forms: when no endpoint is configured in src/consts.ts, fall back to opening
+			// the visitor's e-mail app with the filled-in details so no enquiry is lost.
+			document.querySelectorAll('form[data-form]').forEach((form) => {
+				form.addEventListener('submit', (e) => {
+					if (form.getAttribute('action')) return;
+					e.preventDefault();
+					const data = new FormData(form);
+					const lines = [...data.entries()].filter(([, v]) => String(v).trim()).map(([k, v]) => `${k}: ${v}`);
+					const subject = 'New enquiry from iplanwellness.com';
+					window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+					const status = form.querySelector('[data-status]');
+					if (status) status.textContent = 'กำลังเปิดแอปอีเมลเพื่อส่งข้อมูลของคุณ…';
+				});
+			});
+		</script>
+	</body>
+</html>
