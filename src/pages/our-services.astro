@@ -21,7 +21,11 @@ const schema = {
 	image="services-hero"
 	schema={[schema]}
 >
-	<PageHero crumbs={[{ label: 'Home', href: PATHS.home }, { label: 'Our Services' }]} image="services-hero">
+	<PageHero
+		crumbs={[{ label: 'Home', href: PATHS.home }, { label: 'Our Services' }]}
+		image="services-hero-video-poster"
+		video={{ webm: '/videos/wellness-services-hero.webm', mp4: '/videos/wellness-services-hero.mp4' }}
+	>
 		<h1 class="display t-page c-lime">Our Services<br /><span class="c-cream">Healthcare &amp; Wellness</span></h1>
 		<p class="lead">ไม่ว่าเป้าหมายของคุณคือการสร้างแบรนด์ใหม่ หรือขยายธุรกิจให้เติบโต เราคือพาร์ทเนอร์ที่พร้อมเปลี่ยนวิสัยทัศน์ของคุณให้เป็นความสำเร็จที่วัดผลได้จริง</p>
 	</PageHero>

@@ -11,8 +11,13 @@ interface Props {
 	crumbs: Crumb[];
 	image?: string;
 	imageAlt?: string;
+	/**
+	 * Optional muted background loop (files in /public/videos). `image` should be the video's first
+	 * frame: it is the LCP image, the poster, and what reduced-motion / data-saver visitors see.
+	 */
+	video?: { webm?: string; mp4: string };
 }
-const { crumbs, image, imageAlt } = Astro.props;
+const { crumbs, image, imageAlt, video } = Astro.props;
 
 const breadcrumbSchema = {
 	'@context': 'https://schema.org',
@@ -31,6 +36,12 @@ const breadcrumbSchema = {
 		image && (
 			<div class="page-hero__media">
 				<Img name={image} alt={imageAlt} sizes="(max-width: 900px) 100vw, 46vw" priority />
+				{video && (
+					<video class="page-hero__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-hero-video>
+						{video.webm && <source src={video.webm} type="video/webm" />}
+						<source src={video.mp4} type="video/mp4" />
+					</video>
+				)}
 			</div>
 		)
 	}
@@ -44,3 +55,16 @@ const breadcrumbSchema = {
 	</div>
 	<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </section>
+
+<script>
+	// Start the background loop only when it makes sense: not for reduced motion or data saver.
+	// The poster image stays underneath, so the video fades in over an identical first frame.
+	const v = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+	const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+	const skip = matchMedia('(prefers-reduced-motion: reduce)').matches || conn?.saveData || /(^|-)2g$/.test(conn?.effectiveType ?? '');
+	if (v && !skip) {
+		v.preload = 'auto';
+		v.addEventListener('playing', () => v.classList.add('is-playing'), { once: true });
+		v.play().catch(() => {});
+	}
+</script>

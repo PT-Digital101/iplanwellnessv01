@@ -789,8 +789,28 @@ details[open] > summary .plus::before {
 	);
 }
 /* Pull every photo into the brand palette: calmer saturation + forest colour wash */
-.page-hero__media img {
+.page-hero__media img,
+.page-hero__video {
 	filter: saturate(0.72) brightness(0.82) contrast(1.04);
+}
+/* Background loop sits exactly over its poster frame and fades in once it is actually playing */
+.page-hero__video {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0;
+	transition: opacity 0.8s ease;
+	pointer-events: none;
+}
+.page-hero__video.is-playing {
+	opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+	.page-hero__video {
+		display: none;
+	}
 }
 .page-hero__media::before {
 	content: '';

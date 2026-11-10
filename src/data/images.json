@@ -111,5 +111,9 @@
   "about-video": {
     "src": "home/wellness-video-marketing-showreel-cover.webp",
     "alt": "วิดีโอแนะนำ iPlan Wellness เอเจนซี่การตลาดและผลิตวิดีโอสำหรับธุรกิจ Wellness คลินิก และสปา"
+  },
+  "services-hero-video-poster": {
+    "src": "pages/wellness-space-services-hero-video-poster.webp",
+    "alt": "ผู้หญิงเดินผ่านประตูกระจกกรอบสีเขียวเข้าสู่พื้นที่ Wellness ที่ตกแต่งด้วยต้นไม้และงานจักสาน – บริการการตลาดและสร้างแบรนด์สำหรับธุรกิจ Healthcare และ Wellness"
   }
 }
