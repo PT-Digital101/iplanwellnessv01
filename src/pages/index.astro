@@ -124,6 +124,7 @@ const faqSchema = {
 		<h2 id="industries-h" class="display t-h2-lg c-lime container" style="max-width:1100px;text-align:center">
 			ธุรกิจ <span class="c-cream">Healthcare</span> และ <span class="c-cream">Wellness</span> ที่เราให้บริการ
 		</h2>
+		<div class="industries-carousel" data-carousel aria-roledescription="carousel" aria-label="ธุรกิจที่เราให้บริการ">
 		<div class="industries">
 			<ul class="industries__track">
 				{
@@ -134,7 +135,7 @@ const faqSchema = {
 								class:list={['industry', { 'industry--cta': ind.cta }]}
 								style={`--rot:${rot[i]}deg`}
 							>
-								{ind.image && <Img name={ind.image} sizes="300px" widths={[300, 600]} />}
+								{ind.image && <Img name={ind.image} sizes="(max-width: 700px) 78vw, 340px" widths={[340, 680]} />}
 								<span class="industry__num">{pad(i + 1)}</span>
 								<h3 class="industry__title">{ind.title}</h3>
 								<span class="industry__text">{ind.text}</span>
@@ -144,6 +145,11 @@ const faqSchema = {
 					))
 				}
 			</ul>
+		</div>
+		<div class="carousel-nav">
+			<button type="button" class="carousel-nav__btn" data-carousel-prev aria-label="ก่อนหน้า"><span aria-hidden="true">←</span></button>
+			<button type="button" class="carousel-nav__btn" data-carousel-next aria-label="ถัดไป"><span aria-hidden="true">→</span></button>
+		</div>
 		</div>
 	</section>
 
@@ -260,6 +266,12 @@ const faqSchema = {
 		</div>
 	</section>
 </Layout>
+
+<script>
+	import { initIndustriesCarousel } from '../scripts/industries-carousel';
+	const carousel = document.querySelector<HTMLElement>('[data-carousel]');
+	if (carousel) initIndustriesCarousel(carousel);
+</script>
 
 <script>
 	// Exclusive accordions (<details name>) collapse the open panel above when another opens,

@@ -55,6 +55,8 @@ const props = Astro.props;
 			if (forms.length && document.querySelector('.cf-turnstile')) {
 				const load = () => {
 					if (document.getElementById('cf-turnstile-js')) return;
+					// The flexible widget needs ≥300px; very narrow phones get the compact one.
+					document.querySelectorAll('.cf-turnstile').forEach((el) => el.clientWidth < 300 && el.setAttribute('data-size', 'compact'));
 					const s = document.createElement('script');
 					s.id = 'cf-turnstile-js';
 					s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
