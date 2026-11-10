@@ -30,6 +30,12 @@ const clean = (v: FormDataEntryValue | null, max: number) => String(v ?? '').rep
 const oneLine = (s: string) => s.replace(/[\r\n]+/g, ' ');
 const b64 = (s: string) => Buffer.from(s, 'utf8').toString('base64');
 
+// Health check: reports only whether each setting is present (never its value).
+export const GET: APIRoute = ({ locals }) => {
+	const env = ((locals as { runtime?: { env?: Env } }).runtime?.env ?? {}) as Env;
+	return json({ turnstileSecret: Boolean(env.TURNSTILE_SECRET), emailBinding: Boolean(env.EMAIL) });
+};
+
 export const POST: APIRoute = async ({ request, locals }) => {
 	const env = ((locals as { runtime?: { env?: Env } }).runtime?.env ?? {}) as Env;
 
