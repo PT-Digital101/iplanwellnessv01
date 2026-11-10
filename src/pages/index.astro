@@ -195,7 +195,7 @@ const faqSchema = {
 			</div>
 			<div class="video-feature__body">
 				<span class="eyebrow">Wellness Videos Production</span>
-				<h2 id="video-h" class="display c-lime" style="font-size:clamp(32px,3.6vw,52px);line-height:1.15">ทำไมธุรกิจสายสุขภาพ<br />ควรเล่าเรื่องผ่านวิดีโอ?</h2>
+				<h2 id="video-h" class="display t-h3 c-lime">ทำไมธุรกิจสายสุขภาพ<br />ควรเล่าเรื่องผ่านวิดีโอ?</h2>
 				<p>
 					วิดีโอเป็นเครื่องมือสำคัญสำหรับ <strong>Healthcare</strong> และ <strong>Wellness Marketing</strong> เพราะช่วยสร้างการมีส่วนร่วม (engagement)
 					ที่สูงกว่าคอนเทนต์รูปแบบอื่น และลูกค้าในธุรกิจ <strong>Healthcare, Wellness Tourism, Aesthetic Clinic</strong> และ <strong>Wellness Products</strong>
@@ -219,7 +219,7 @@ const faqSchema = {
 	<!-- Insights -->
 	<section class="container section stack" style="gap:48px">
 		<div class="section-head">
-			<h2 class="display c-lime" style="font-size:clamp(44px,5.4vw,82px)">Wellness <span class="c-cream">Insights</span></h2>
+			<h2 class="display t-h2-lg c-lime">Wellness <span class="c-cream">Insights</span></h2>
 			<a href={PATHS.blog} class="btn btn--outline">ดูทั้งหมด <span aria-hidden="true">→</span></a>
 		</div>
 		<div class="post-grid">{posts.map((p) => <PostCard post={p} />)}</div>
@@ -228,7 +228,7 @@ const faqSchema = {
 	<!-- FAQ -->
 	<section class="container section section--flush-top" style="display:flex;flex-wrap:wrap;gap:48px 72px">
 		<div class="stack" style="flex: 1 1 min(360px, 100%);gap:20px">
-			<h2 class="display c-lime" style="font-size:clamp(32px,3.6vw,48px);line-height:1.15">คำถามที่พบบ่อย (FAQ)</h2>
+			<h2 class="display t-h3 c-lime">คำถามที่พบบ่อย (FAQ)</h2>
 			<div class="btn-row"><a href={PATHS.contact} class="btn">ติดต่อเรา <span aria-hidden="true">→</span></a></div>
 		</div>
 		<div class="accordion faq" style="flex: 1.6 1 min(600px, 100%);min-width:0">
@@ -251,7 +251,7 @@ const faqSchema = {
 	<section id="contact" class="cta-wrap" aria-labelledby="contact-h">
 		<div class="contact-panel">
 			<div class="contact-panel__text">
-				<h2 id="contact-h" class="display" style="font-size:clamp(34px,4vw,56px);line-height:1.12">
+				<h2 id="contact-h" class="display t-h3">
 					วางกลยุทธ์และสร้างแบรนด์<br /><span class="c-lime">ที่ตอบโจทย์ธุรกิจ Wellness ของคุณ</span>
 				</h2>
 				<p class="lead">เราพร้อมยกระดับแบรนด์ของคุณให้โดดเด่น น่าเชื่อถือ และเป็นที่จดจำในธุรกิจ Wellness ด้วยทีมผู้เชี่ยวชาญที่เข้าใจทั้งสุขภาพ การแพทย์ และการตลาดอย่างแท้จริง</p>
@@ -260,3 +260,17 @@ const faqSchema = {
 		</div>
 	</section>
 </Layout>
+
+<script>
+	// Exclusive accordions (<details name>) collapse the open panel above when another opens,
+	// which shoves the tapped row off-screen on phones. Keep the tapped row where the finger is.
+	for (const summary of document.querySelectorAll<HTMLElement>('.accordion summary')) {
+		summary.addEventListener('click', () => {
+			const before = summary.getBoundingClientRect().top;
+			requestAnimationFrame(() => {
+				const delta = summary.getBoundingClientRect().top - before;
+				if (Math.abs(delta) > 1) window.scrollBy({ top: delta, behavior: 'instant' });
+			});
+		});
+	}
+</script>

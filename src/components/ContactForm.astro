@@ -17,7 +17,7 @@ const { id = 'contact-form', class: className } = Astro.props;
 	<label class="field">Website URL or Fanpage<input name="website" type="url" inputmode="url" placeholder="https://" /></label>
 	<label class="field"
 		>Your budgets<select name="budget">
-			<option value="">งบประมาณต่อเดือน โปรดเลือก 1 รายการ</option>
+			<option value="">เลือกงบประมาณต่อเดือน</option>
 			{BUDGETS.map((b) => <option>{b}</option>)}
 		</select></label
 	>

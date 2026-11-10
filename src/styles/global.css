@@ -179,7 +179,7 @@ textarea {
 .display {
 	font-family: var(--font-serif);
 	font-weight: 500;
-	line-height: 1.1;
+	line-height: 1.15;
 	letter-spacing: -0.035em;
 }
 .t-hero {
@@ -190,11 +190,16 @@ textarea {
 }
 .t-h2 {
 	font-size: clamp(36px, 4.4vw, 64px);
-	line-height: 1.08;
+	line-height: 1.12;
 }
 .t-h2-lg {
 	font-size: clamp(38px, 5vw, 72px);
-	line-height: 1.05;
+	line-height: 1.1;
+}
+/* Sub-section / CTA headings (video, FAQ, contact, CTA card, related posts) */
+.t-h3 {
+	font-size: clamp(32px, 3.6vw, 52px);
+	line-height: 1.18;
 }
 .t-sub {
 	font-size: clamp(26px, 3.4vw, 48px);
@@ -1068,7 +1073,7 @@ a.cell:hover {
 	letter-spacing: -0.02em;
 }
 .cell__text {
-	font-size: 15px;
+	font-size: 16px;
 	color: var(--sand);
 }
 .lime-band .cell__text {
@@ -1077,6 +1082,18 @@ a.cell:hover {
 .cell--cta {
 	background: var(--midnight);
 	justify-content: flex-end;
+}
+@media (max-width: 600px) {
+	.cell {
+		min-height: var(--cell-h-sm, 168px);
+		padding: 22px;
+	}
+	.cell__title {
+		font-size: 24px;
+	}
+	.cell--cta {
+		min-height: 120px;
+	}
 }
 .cell--cta .cell__title {
 	margin-top: 0;
@@ -1128,7 +1145,7 @@ a.cell:hover {
 	font-weight: 600;
 }
 .why-card__text {
-	font-size: 15px;
+	font-size: 16px;
 	color: var(--sand);
 }
 .why-card__gets {
@@ -1359,7 +1376,7 @@ a.cell:hover {
 	color: var(--lime);
 }
 .industry--cta .industry__title {
-	font-size: 46px;
+	font-size: clamp(34px, 3.2vw, 46px);
 }
 .industry--cta .industry__text {
 	color: var(--forest);
@@ -1478,15 +1495,49 @@ a.cell:hover {
 	color: var(--sand);
 	font-size: 16px;
 }
-@media (max-width: 700px) {
-	.steps {
-		padding-left: 4px;
+.accordion summary {
+	scroll-margin-top: 96px;
+}
+@media (prefers-reduced-motion: no-preference) {
+	.accordion details[open] > :not(summary) {
+		animation: accordion-in 0.32s cubic-bezier(0.2, 0.7, 0.2, 1);
 	}
-	.faq__a {
+}
+@keyframes accordion-in {
+	from {
+		opacity: 0;
+		transform: translateY(-6px);
+	}
+}
+@media (max-width: 700px) {
+	.accordion summary {
+		gap: 14px;
+		padding: 18px 0;
+	}
+	.accordion__num,
+	.faq summary .accordion__num {
+		width: 22px;
+		font-size: 13px;
+	}
+	.accordion__title {
+		font-size: 21px;
+	}
+	.steps {
+		gap: 10px;
 		padding: 0 0 24px;
 	}
+	.step {
+		padding: 16px 18px;
+		gap: 6px;
+	}
+	.step__title {
+		font-size: 17px;
+	}
+	.faq__a {
+		padding: 0 0 24px 36px;
+	}
 	.faq summary {
-		font-size: 18px;
+		font-size: 17px;
 	}
 }
 
@@ -1540,7 +1591,7 @@ a.cell:hover {
 	border-radius: var(--r-pill);
 	background: var(--pine);
 	color: var(--cream);
-	font-size: 14px;
+	font-size: 15px;
 	font-weight: 500;
 }
 .tag-pills span {
@@ -1605,7 +1656,7 @@ a.cell:hover {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 4px 12px;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: 600;
 	letter-spacing: 1.5px;
 	color: var(--sand);
@@ -1622,7 +1673,7 @@ a.cell:hover {
 	letter-spacing: -0.02em;
 }
 .post-card__text {
-	font-size: 15px;
+	font-size: 16px;
 	color: var(--sand);
 	display: -webkit-box;
 	-webkit-line-clamp: 3;
@@ -2017,8 +2068,8 @@ a.filter:hover {
 	gap: 20px;
 }
 .cta-card h2 {
-	font-size: clamp(32px, 4vw, 54px);
-	line-height: 1.12;
+	font-size: clamp(32px, 3.6vw, 52px);
+	line-height: 1.18;
 }
 @media (max-width: 700px) {
 	.cta-wrap {
@@ -2041,8 +2092,9 @@ a.filter:hover {
 .field {
 	display: flex;
 	flex-direction: column;
+	min-width: 0;
 	gap: 6px;
-	font-size: 13px;
+	font-size: 14px;
 	color: var(--sand);
 }
 .field input,
@@ -2053,8 +2105,10 @@ a.filter:hover {
 	border: 1px solid rgba(245, 242, 235, 0.25);
 	background: rgba(245, 242, 235, 0.06);
 	color: var(--cream);
-	font-size: 15px;
+	font-size: 16px;
 	min-height: 48px;
+	width: 100%;
+	min-width: 0;
 }
 .field select {
 	background: var(--midnight);
@@ -2210,6 +2264,9 @@ a.filter:hover {
 .site-footer__col a {
 	color: var(--cream);
 	text-decoration: none;
+	display: inline-block;
+	padding-block: 6px;
+	margin-block: -6px;
 }
 .site-footer__col a:hover {
 	color: var(--lime);

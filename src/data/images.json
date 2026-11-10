@@ -29,24 +29,24 @@
     "alt": "บริการรับทำการตลาดวิดีโอสำหรับธุรกิจ Wellness คลินิก และสปา เปลี่ยนผู้ชมให้เป็นลูกค้า"
   },
   "industry-wellness-tourism": {
-    "src": "industries/wellness-resort-spa-garden-treatment.webp",
-    "alt": "นักบำบัดเตรียมเตียงนวดกลางสวนของรีสอร์ตเพื่อสุขภาพ – การตลาดท่องเที่ยวเชิงสุขภาพ Wellness Tourism"
+    "src": "industries/wellness-tourism-tropical-retreat-pool.webp",
+    "alt": "ผู้เข้าพักเดินข้างสระน้ำไปยังศาลาหินท่ามกลางสวนเขตร้อนในรีทรีตเพื่อสุขภาพ"
   },
   "industry-aesthetic-clinic": {
-    "src": "industries/aesthetic-clinic-facial-treatment.webp",
-    "alt": "ผู้เชี่ยวชาญทำทรีตเมนต์มาสก์หน้าให้ลูกค้าในคลินิกเสริมความงาม"
+    "src": "industries/aesthetic-clinic-natural-beauty-portrait-lummi.webp",
+    "alt": "ภาพระยะใกล้ของผู้หญิงแต่งหน้าโทนธรรมชาติบนพื้นหลังสีฟ้าเทาอ่อน"
   },
   "industry-hospital": {
-    "src": "industries/doctor-patient-health-check.webp",
-    "alt": "แพทย์วัดความดันโลหิตและพูดคุยกับผู้ป่วยในศูนย์สุขภาพ"
+    "src": "industries/hospital-doctor-patient-interaction-lummi.webp",
+    "alt": "แพทย์หญิงในเสื้อกาวน์อธิบายข้อมูลบนแท็บเล็ตให้ผู้ป่วยหญิงในห้องปรึกษา"
   },
   "industry-spa-massage": {
-    "src": "industries/spa-relaxation-lounge.webp",
-    "alt": "ลูกค้าผ่อนคลายพร้อมเครื่องดื่มอุ่น ๆ ในห้องพักผ่อนของสปา"
+    "src": "industries/spa-relaxation-treatment-room-lummi.webp",
+    "alt": "ผู้หญิงนอนพักบนเตียงทรีตเมนต์ คลุมด้วยผ้าสีเบจในห้องสปาที่มีแสงอบอุ่น"
   },
   "industry-wellness-product": {
-    "src": "industries/wellness-skincare-product-consultation.webp",
-    "alt": "พนักงานแนะนำผลิตภัณฑ์สกินแคร์และผลิตภัณฑ์เพื่อสุขภาพให้ลูกค้าในร้าน"
+    "src": "industries/wellness-skincare-products-botanical-shadows.webp",
+    "alt": "ขวดแก้วสีเขียว กระปุกสกินแคร์ และกล่องสีครีมบนชั้นหิน ภายใต้แสงและเงาใบไม้"
   },
   "services-hero": {
     "src": "industries/wellness-skincare-product-consultation.webp",
@@ -65,48 +65,48 @@
     "alt": "มุมพูดคุยพร้อมเก้าอี้สีครีมสองตัวและโต๊ะหิน ท่ามกลางผนังสีเขียว แสงธรรมชาติ และเงาใบไม้"
   },
   "service-wellness-branding": {
-    "src": "industries/wellness-resort-spa-garden-treatment.webp",
-    "alt": "นักบำบัดในสวนของ Wellness Resort – บริการสร้างแบรนด์ Wellness สำหรับธุรกิจสุขภาพและความงาม"
+    "src": "services/wellness-branding-packaging-design-workspace.webp",
+    "alt": "ต้นแบบบรรจุภัณฑ์ผลิตภัณฑ์สุขภาพและภาพพฤกษศาสตร์บนโต๊ะออกแบบแบรนด์"
   },
   "service-medical-marketing": {
-    "src": "industries/doctor-patient-health-check.webp",
-    "alt": "แพทย์ตรวจสุขภาพผู้ป่วยอย่างใส่ใจ – การตลาดสายสุขภาพ Wellness & Medical Marketing"
+    "src": "services/wellness-medical-marketing-campaign-planning.webp",
+    "alt": "ทีมงานพิจารณาสื่อให้ความรู้ด้านสุขภาพและเอกสารแคมเปญการตลาดร่วมกันในห้องประชุมคลินิก"
   },
   "service-wellness-tourism": {
-    "src": "industries/spa-relaxation-lounge.webp",
-    "alt": "ลูกค้าพักผ่อนในเลานจ์ของสปาและรีสอร์ต – การตลาดท่องเที่ยวเชิงสุขภาพ Wellness Tourism"
+    "src": "services/wellness-tourism-retreat-yoga-seaside.webp",
+    "alt": "ผู้เข้าพักถือเสื่อโยคะเดินตามทางไม้ไปยังศาลาริมทะเลในรีทรีตเพื่อสุขภาพ"
   },
   "service-aesthetic-clinic": {
-    "src": "industries/aesthetic-clinic-facial-treatment.webp",
-    "alt": "ทรีตเมนต์ผิวหน้าในคลินิกความงาม – บริการการตลาดสำหรับคลินิกความงาม"
+    "src": "services/aesthetic-clinic-doctor-video-interview.webp",
+    "alt": "แพทย์คลินิกความงามนั่งให้สัมภาษณ์หน้ากล้องในห้องตรวจโทนสีขาวและเขียวอ่อน"
   },
   "service-video-production": {
-    "src": "services/wellness-video-production-team-studio.webp",
-    "alt": "ทีมงานผลิตวิดีโอกำลังถ่ายทำในสตูดิโอ – บริการผลิตวิดีโอสำหรับธุรกิจ Wellness"
+    "src": "services/wellness-video-production-interview-crew.webp",
+    "alt": "ทีมถ่ายทำวิดีโอบันทึกบทสัมภาษณ์ผู้เชี่ยวชาญในสตูดิโอ Wellness พร้อมกล้องบนขาตั้ง"
   },
   "service-brand-consultancy": {
-    "src": "services/wellness-brand-botanical-shadows.webp",
-    "alt": "ขวดแก้วสีเขียวกับบรรจุภัณฑ์สีครีมและตัวอย่างกระดาษ ภายใต้แสงและเงาใบไม้ สื่อถึงเอกลักษณ์แบรนด์ Wellness"
+    "src": "services/wellness-brand-consultancy-strategy-meeting.webp",
+    "alt": "ที่ปรึกษาและเจ้าของธุรกิจพูดคุยทิศทางแบรนด์ Wellness พร้อมมู้ดบอร์ดและสมุดบันทึกบนโต๊ะ"
   },
   "service-website-seo": {
-    "src": "services/website-seo-development-team.webp",
-    "alt": "ทีมพัฒนาเว็บไซต์และ SEO ทำงานหน้าจอคอมพิวเตอร์ – บริการสร้างเว็บไซต์และ SEO สำหรับธุรกิจสุขภาพ"
+    "src": "services/wellness-website-seo-design-laptop.webp",
+    "alt": "นักออกแบบตรวจดูเว็บไซต์ธุรกิจ Wellness บนแล็ปท็อป พร้อมแบบร่างโครงหน้าเว็บบนโต๊ะ"
   },
   "service-ai-marketing": {
-    "src": "services/ai-marketing-digital-interface.webp",
-    "alt": "ผู้หญิงใช้แท็บเล็ตควบคุมอินเทอร์เฟซดิจิทัล – บริการ AI Marketing สำหรับธุรกิจสุขภาพ"
+    "src": "services/wellness-ai-marketing-campaign-analytics.webp",
+    "alt": "นักการตลาดตรวจดูกราฟผลแคมเปญบนแล็ปท็อปและเอกสารเปรียบเทียบข้อมูลบนโต๊ะ"
   },
   "service-health-tech": {
-    "src": "services/clinic-line-booking-crm-system.webp",
-    "alt": "พนักงานคลินิกความงามจัดการนัดหมายลูกค้าผ่าน LINE – ระบบจองคิวและ CRM สำหรับคลินิก"
+    "src": "services/clinic-appointment-booking-calendar-system.webp",
+    "alt": "พนักงานคลินิกดูปฏิทินนัดหมายบนคอมพิวเตอร์ ขณะที่ผู้รับบริการตรวจดูการยืนยันนัดหมายบนโทรศัพท์"
   },
   "service-wellness-marketplace": {
-    "src": "services/wellness-marketplace-shopping-destination.webp",
-    "alt": "ศูนย์การค้าเพื่อสุขภาพท่ามกลางต้นไม้ – Wellness Marketplace ขยายช่องทางการขายสินค้าสุขภาพ"
+    "src": "services/wellness-marketplace-product-order-packing.webp",
+    "alt": "ผู้ขายแพ็กคำสั่งซื้อสินค้าสุขภาพลงกล่อง พร้อมขวดสกินแคร์และบรรจุภัณฑ์บนโต๊ะ"
   },
   "service-healthcare-marketing": {
-    "src": "services/healthcare-marketing-nurse-patient-care.webp",
-    "alt": "พยาบาลดูแลผู้ป่วยอย่างใส่ใจ – Healthcare Marketing สำหรับโรงพยาบาลและคลินิก"
+    "src": "services/healthcare-marketing-patient-education-planning.webp",
+    "alt": "แพทย์และทีมสื่อสารทบทวนแผ่นพับให้ความรู้ผู้ป่วย พร้อมจดบันทึกแนวทางเนื้อหา"
   },
   "about-video": {
     "src": "home/wellness-video-marketing-showreel-cover.webp",
