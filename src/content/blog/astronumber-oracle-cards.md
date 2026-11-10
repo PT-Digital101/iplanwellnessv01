@@ -1,7 +1,7 @@
 ---
 title: "อ.ณัฐ Astronumber ศาสตร์ไพ่ออราเคิล ค้นหาคำตอบในใจ"
 slug: "astronumber-oracle-cards"
-description: "ในงาน Bangna Towers Health & Wellness 2025 ที่บูธของ Astronumber Thailand ไม่ได้มีเพียงศาสตร์แห่งการคำนวณดวงดาวเท่านั้น แต่ทีมงาน I Plan Wellness (/)…"
+description: "รู้จักศาสตร์ไพ่ออราเคิลกับ อ.ณัฐ Astronumber จากงาน Bangna Towers Health & Wellness 2025 เครื่องมือที่ใช้สัญชาตญาณช่วยค้นหาคำตอบในใจ ต่างจากโหราศาสตร์อย่างไร"
 pubDate: 2026-01-08T14:07:46+07:00
 updatedDate: 2026-01-14T17:11:09+07:00
 category: "Bangna Towers Health & Wellness 2025"

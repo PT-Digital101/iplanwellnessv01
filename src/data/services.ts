@@ -27,6 +27,7 @@ export const SERVICES: Service[] = [
 	{
 		slug: 'wellness-branding',
 		seoTitle: 'Wellness Branding รับสร้างแบรนด์ธุรกิจสุขภาพและความงาม',
+		seoDescription: 'บริการสร้างแบรนด์ Wellness ครบวงจร วางกลยุทธ์ ออกแบบโลโก้และอัตลักษณ์ แพ็กเกจจิ้ง และสื่อการตลาด สำหรับคลินิก โรงพยาบาล สปา และแบรนด์ผลิตภัณฑ์สุขภาพ',
 		name: 'Wellness Branding',
 		menuLabel: 'Wellness and Medical Branding',
 		nameTh: 'สร้างแบรนด์ Wellness',
@@ -38,6 +39,7 @@ export const SERVICES: Service[] = [
 	{
 		slug: 'wellness-and-medical-marketing',
 		seoTitle: 'Wellness & Medical Marketing การตลาดสายสุขภาพครบวงจร',
+		seoDescription: 'การตลาดสายสุขภาพครบวงจรสำหรับคลินิกและโรงพยาบาล วางกลยุทธ์ภายใต้ข้อกำหนดทางการแพทย์ สร้างคอนเทนต์ให้ความรู้ และแคมเปญดิจิทัลที่วัดผลได้จริง',
 		name: 'Wellness and Medical Marketing',
 		menuLabel: 'Wellness Medical Marketing',
 		nameTh: 'การตลาดสายสุขภาพ',
@@ -49,6 +51,7 @@ export const SERVICES: Service[] = [
 	{
 		slug: 'wellness-tourism-marketing',
 		seoTitle: 'Wellness Tourism Marketing การตลาดท่องเที่ยวเชิงสุขภาพ',
+		seoDescription: 'การตลาดท่องเที่ยวเชิงสุขภาพสำหรับรีสอร์ต สปา และ Wellness Retreat วางกลยุทธ์ คอนเทนต์ และโฆษณาออนไลน์ ดึงดูดนักท่องเที่ยวและกลุ่ม Medical Tourism',
 		name: 'Wellness Tourism Marketing',
 		menuLabel: 'Wellness Tourism Marketing',
 		nameTh: 'การตลาดท่องเที่ยวเชิงสุขภาพ',
@@ -60,6 +63,7 @@ export const SERVICES: Service[] = [
 	{
 		slug: 'aesthetic-clinic-marketing',
 		seoTitle: 'Aesthetic Clinic Marketing การตลาดคลินิกความงาม',
+		seoDescription: 'การตลาดคลินิกความงามที่เพิ่มยอดจองอย่างถูกจรรยาบรรณ สร้างภาพลักษณ์แพทย์และบริการให้โดดเด่น บริหารโซเชียลมีเดีย และทำให้คลินิกแตกต่างจากคู่แข่ง',
 		name: 'Aesthetic Clinic Marketing',
 		menuLabel: 'Aesthetic Clinic Marketing',
 		nameTh: 'การตลาดสำหรับคลินิกความงาม',
@@ -71,6 +75,7 @@ export const SERVICES: Service[] = [
 	{
 		slug: 'wellness-videos-production',
 		seoTitle: 'Wellness Videos Production ผลิตวิดีโอธุรกิจสุขภาพ คลินิก สปา',
+		seoDescription: 'ผลิตวิดีโอสำหรับธุรกิจ Wellness คลินิก โรงพยาบาล และสปา ตั้งแต่คิดคอนเซ็ปต์ เขียนสคริปต์ ถ่ายทำ จนถึงตัดต่อ พร้อมใช้บนเว็บไซต์ โซเชียล และโฆษณา',
 		name: 'Wellness Videos Production',
 		menuLabel: 'Wellness Videos Production',
 		nameTh: 'ผลิตวิดีโอสำหรับธุรกิจ Wellness',
@@ -82,6 +87,7 @@ export const SERVICES: Service[] = [
 	{
 		slug: 'brand-consultancy',
 		seoTitle: 'Brand Consultancy ที่ปรึกษาแบรนด์ Healthcare & Wellness',
+		seoDescription: 'ที่ปรึกษาด้านแบรนด์สำหรับธุรกิจ Healthcare และ Wellness ตรวจสุขภาพแบรนด์ วิเคราะห์ตลาดและคู่แข่ง วางจุดยืนและกลยุทธ์ พร้อมช่วยนำไปใช้ได้จริง',
 		name: 'Brand Consultancy',
 		menuLabel: 'Brand Consultancy',
 		nameTh: 'ที่ปรึกษาด้านแบรนด์ Healthcare & Wellness',
@@ -93,6 +99,7 @@ export const SERVICES: Service[] = [
 	{
 		slug: 'website-and-seo-service',
 		seoTitle: 'รับทำเว็บไซต์และ SEO สำหรับคลินิกและธุรกิจสุขภาพ',
+		seoDescription: 'รับทำเว็บไซต์และ SEO สำหรับคลินิกและธุรกิจสุขภาพ ออกแบบ UX/UI รองรับมือถือ วางโครงสร้าง SEO ตั้งแต่วันแรก ให้ลูกค้าค้นหาเจอบน Google และตัดสินใจได้ทันที',
 		name: 'Website + SEO Service',
 		menuLabel: 'Website + SEO Service',
 		nameTh: 'บริการสร้างเว็บไซต์ และ SEO',
@@ -104,6 +111,7 @@ export const SERVICES: Service[] = [
 	{
 		slug: 'ai-marketing',
 		seoTitle: 'AI Marketing การตลาดด้วย AI สำหรับธุรกิจสุขภาพและความงาม',
+		seoDescription: 'AI Marketing สำหรับธุรกิจสุขภาพและความงาม ใช้ AI วางแผน สร้างคอนเทนต์ และปรับแคมเปญจากข้อมูลแบบ Real-time เข้าถึงกลุ่มเป้าหมายแม่นยำและคุ้มงบกว่าเดิม',
 		name: 'AI Marketing',
 		menuLabel: 'AI Marketing',
 		nameTh: 'บริการตลาด AI Marketing',
@@ -115,6 +123,7 @@ export const SERVICES: Service[] = [
 	{
 		slug: 'health-tech-solution',
 		seoTitle: 'Health Tech Solution ระบบจองคิวผ่าน LINE และ CRM คลินิก',
+		seoDescription: 'ระบบจองคิวผ่าน LINE ตลอด 24 ชม. แจ้งเตือนนัดหมายลด No-Show พร้อม CRM สำหรับคลินิกและธุรกิจสุขภาพ ลดภาระแอดมินและดูแลลูกค้าได้เป็นรายบุคคล',
 		name: 'Health Tech Solution',
 		menuLabel: 'Health Tech Solution',
 		nameTh: 'ระบบจัดการคลินิกและธุรกิจสุขภาพ',
@@ -126,6 +135,7 @@ export const SERVICES: Service[] = [
 	{
 		slug: 'wellness-marketplace',
 		seoTitle: 'Wellness Marketplace ขยายช่องทางขายสินค้าสุขภาพ + Affiliate',
+		seoDescription: 'Wellness Marketplace ช่องทางขายใหม่สำหรับผลิตภัณฑ์และบริการสุขภาพ เข้าถึงลูกค้าคนรักสุขภาพที่พร้อมซื้อ พร้อมระบบ Affiliate ช่วยผลักดันยอดขายให้แบรนด์คุณ',
 		name: 'Wellness Marketplace',
 		menuLabel: 'Wellness Marketplace',
 		nameTh: 'ขยายช่องทางการขายบน Marketplace',
@@ -137,6 +147,7 @@ export const SERVICES: Service[] = [
 	{
 		slug: 'healthcare-marketing',
 		seoTitle: 'Healthcare Marketing การตลาดโรงพยาบาลและคลินิก',
+		seoDescription: 'Healthcare Marketing สำหรับโรงพยาบาลและคลินิก วางกลยุทธ์ที่สร้างความไว้วางใจ คอนเทนต์ให้ความรู้ทางการแพทย์ แคมเปญออนไลน์อย่างมีจรรยาบรรณ และดูแลรีวิวออนไลน์',
 		name: 'Healthcare Marketing',
 		menuLabel: 'Healthcare Marketing',
 		nameTh: 'การตลาดสำหรับคลินิกและโรงพยาบาล',

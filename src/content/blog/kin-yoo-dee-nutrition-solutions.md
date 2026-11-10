@@ -1,7 +1,7 @@
 ---
 title: "\"กินอยู่ดี\" โซลูชันสุขภาพจากผู้เชี่ยวชาญด้านโภชนาการ"
 slug: "kin-yoo-dee-nutrition-solutions"
-description: "ที่งาน Bangna Towers Health & Wellness 2025 ทีมงาน I Plan Wellness (/) ได้พบกับบูธที่น่าสนใจอย่างยิ่ง นั่นคือ ‘ กินอยู่ดี (https://www.kinyoodee.com/)’…"
+description: "“กินอยู่ดี” ต่อยอดความเชี่ยวชาญด้านโภชนาการผู้ป่วยสู่ BlenDee Quick อาหารเพื่อสุขภาพที่ทุกคนเข้าถึงได้ง่าย อัปเดตจากงาน Bangna Towers Health & Wellness 2025"
 pubDate: 2026-01-08T18:19:42+07:00
 updatedDate: 2026-01-14T17:01:03+07:00
 category: "Bangna Towers Health & Wellness 2025"

@@ -1,7 +1,7 @@
 ---
 title: "Biofeedback เทคโนโลยีวัดความเครียด สำรวจสุขภาพจิตยุคใหม่"
 slug: "biofeedback-stress-measurement-technology"
-description: "ที่งาน Bangna Towers Health & Wellness 2025 นอกเหนือจากนวัตกรรมด้านสุขภาพกายที่มองเห็นได้ง่าย ทีมงาน I Plan Wellness (/)…"
+description: "Biofeedback เทคโนโลยีวัดความเครียดจากสัญญาณร่างกาย ช่วยให้เห็นสุขภาพใจเป็นข้อมูลที่จับต้องได้ อัปเดตนวัตกรรมจากงาน Bangna Towers Health & Wellness 2025"
 pubDate: 2026-01-09T15:27:36+07:00
 updatedDate: 2026-01-14T17:00:22+07:00
 category: "Bangna Towers Health & Wellness 2025"
