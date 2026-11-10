@@ -1,0 +1,105 @@
+---
+// One shared lightbox for every YouTube link marked with data-lightbox="youtube".
+// Without JS the link still opens YouTube; with JS it plays in-page (youtube-nocookie).
+import Icon from './Icon.astro';
+---
+
+<dialog class="video-lightbox" aria-label="วิดีโอ" data-video-lightbox>
+	<div class="video-lightbox__frame" data-video-frame></div>
+	<button type="button" class="video-lightbox__close" aria-label="ปิดวิดีโอ (Esc)" data-video-close autofocus>
+		<Icon name="close" size={24} stroke={2} />
+	</button>
+</dialog>
+
+<script>
+	const dlg = document.querySelector<HTMLDialogElement>('[data-video-lightbox]');
+	const frame = document.querySelector<HTMLElement>('[data-video-frame]');
+	const idFrom = (url: string) => url.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/)?.[1];
+	let opener: HTMLElement | null = null;
+
+	document.addEventListener('click', (e) => {
+		const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[data-lightbox="youtube"]');
+		if (!a || !dlg || !frame || typeof dlg.showModal !== 'function') return;
+		const id = idFrom(a.href);
+		if (!id) return;
+		e.preventDefault();
+		opener = a;
+		const title = a.getAttribute('aria-label') || 'วิดีโอ iPlan Wellness';
+		frame.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1" title="${title.replace(/"/g, '&quot;')}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+		dlg.showModal();
+		// Keep focus on our close button (not inside the YouTube iframe, which would swallow Esc).
+		document.querySelector<HTMLButtonElement>('[data-video-close]')?.focus();
+		document.documentElement.style.overflow = 'hidden';
+	});
+	const close = () => dlg?.close();
+	document.querySelector('[data-video-close]')?.addEventListener('click', close);
+	// click on the backdrop (outside the video) closes
+	dlg?.addEventListener('click', (e) => {
+		if (e.target === dlg) close();
+	});
+	dlg?.addEventListener('close', () => {
+		if (frame) frame.innerHTML = ''; // stops playback
+		document.documentElement.style.overflow = '';
+		opener?.focus();
+	});
+</script>
+
+<style>
+	.video-lightbox {
+		width: min(1200px, 92vw);
+		max-width: none;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		overflow: visible;
+	}
+	.video-lightbox::backdrop {
+		background: rgba(17, 34, 31, 0.92);
+		backdrop-filter: blur(4px);
+	}
+	.video-lightbox[open] {
+		animation: vl-in 0.22s ease-out;
+	}
+	@keyframes vl-in {
+		from {
+			opacity: 0;
+			transform: scale(0.97);
+		}
+	}
+	.video-lightbox__frame {
+		aspect-ratio: 16 / 9;
+		border-radius: 18px;
+		overflow: hidden;
+		background: #000;
+		box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.6);
+	}
+	.video-lightbox__frame :global(iframe) {
+		width: 100%;
+		height: 100%;
+		border: 0;
+		display: block;
+	}
+	.video-lightbox__close {
+		position: absolute;
+		top: -60px;
+		right: 0;
+		width: 48px;
+		height: 48px;
+		border-radius: var(--r-pill);
+		border: 0;
+		background: var(--lime);
+		color: var(--forest);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+	}
+	.video-lightbox__close:hover {
+		background: var(--cream);
+	}
+	@media (max-width: 700px) {
+		.video-lightbox__close {
+			top: -56px;
+		}
+	}
+</style>

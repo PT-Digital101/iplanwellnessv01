@@ -48,7 +48,7 @@ const faqSchema = {
 			<Img name="home-film" sizes="(max-width: 1360px) 100vw, 1312px" />
 			{
 				SITE.brandFilmUrl && (
-					<a class="play-pill" href={SITE.brandFilmUrl} target="_blank" rel="noopener">
+					<a class="play-pill" href={SITE.brandFilmUrl} data-lightbox="youtube" aria-label="เล่นวิดีโอแนะนำแบรนด์ iPlan Wellness">
 						<span class="play-pill__icon">
 							<Icon name="play" size={18} />
 						</span>
@@ -187,7 +187,7 @@ const faqSchema = {
 				<Img name="home-showreel" sizes="(max-width: 1000px) 100vw, 640px" />
 				{
 					SITE.showreelUrl && (
-						<a class="play-round" href={SITE.showreelUrl} target="_blank" rel="noopener" aria-label="Play showreel">
+						<a class="play-round" href={SITE.showreelUrl} data-lightbox="youtube" aria-label="เล่นวิดีโอผลงาน Wellness Videos Production">
 							<Icon name="play" size={30} />
 						</a>
 					)
