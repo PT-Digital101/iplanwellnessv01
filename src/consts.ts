@@ -31,7 +31,7 @@ export const CONTACT = {
 	phone: '0899876444',
 	phoneIntl: '+66899876444',
 	line: '@iplandigital',
-	lineUrl: 'https://line.me/R/ti/p/@iplandigital',
+	lineUrl: 'https://page.line.me/638vpxid',
 	hours: 'Mon-Fri: 09:00 – 18:00 น.',
 	addressShort: 'อาคารศุภาคาร ช้อปปิ้งเซ็นเตอร์ (ชั้น 3 ห้อง 3A.09) ถนนเจริญนคร คลองสาน กรุงเทพฯ 10600',
 	addressFull:
