@@ -11,17 +11,23 @@ const { id = 'contact-form', class: className } = Astro.props;
 
 <form id={id} class:list={['form', className]} method="post" action={SITE.contactFormAction || undefined} data-form="contact">
 	<slot />
-	<label class="field">First Name<input name="first_name" type="text" autocomplete="given-name" required /></label>
-	<label class="field">Last Name<input name="last_name" type="text" autocomplete="family-name" /></label>
-	<label class="field full">Email<input name="email" type="email" autocomplete="email" required /></label>
-	<label class="field">Website URL or Fanpage<input name="website" type="url" inputmode="url" placeholder="https://" /></label>
+	<label class="field">First Name<input name="first_name" type="text" autocomplete="given-name" maxlength="100" required /></label>
+	<label class="field">Last Name<input name="last_name" type="text" autocomplete="family-name" maxlength="100" /></label>
+	<label class="field full">Email<input name="email" type="email" autocomplete="email" maxlength="200" required /></label>
+	<label class="field">Website URL or Fanpage<input name="website" type="url" inputmode="url" placeholder="https://" maxlength="300" /></label>
 	<label class="field"
 		>Your budgets<select name="budget">
 			<option value="">เลือกงบประมาณต่อเดือน</option>
 			{BUDGETS.map((b) => <option>{b}</option>)}
 		</select></label
 	>
-	<label class="field full">Your Message<textarea name="message" rows="5"></textarea></label>
+	<label class="field full">Your Message<textarea name="message" rows="5" maxlength="5000"></textarea></label>
+	<!-- Spam traps: a field people never see, and when the form was opened. -->
+	<div class="form__trap" aria-hidden="true">
+		<label>Company website<input name="company_site" type="text" tabindex="-1" autocomplete="off" /></label>
+	</div>
+	<input type="hidden" name="started_at" />
+	{SITE.turnstileSiteKey && <div class="cf-turnstile full" data-sitekey={SITE.turnstileSiteKey} data-theme="dark" data-size="flexible" data-language="th" />}
 	<button type="submit" class="btn full">{CTA_LABEL} <span aria-hidden="true">→</span></button>
 	<p class="form__status full" role="status" data-status></p>
 </form>

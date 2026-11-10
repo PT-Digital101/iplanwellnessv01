@@ -182,11 +182,13 @@ textarea {
 	line-height: 1.15;
 	letter-spacing: -0.035em;
 }
-.t-hero {
-	font-size: clamp(42px, 6.8vw, 106px);
+/* One h1 size for every page hero (home + inner pages) so titles feel consistent site-wide. */
+:root {
+	--fs-h1: clamp(42px, 5.2vw, 84px);
 }
+.t-hero,
 .t-page {
-	font-size: clamp(44px, 6.1vw, 95px);
+	font-size: var(--fs-h1);
 }
 .t-h2 {
 	font-size: clamp(36px, 4.4vw, 64px);
@@ -732,7 +734,6 @@ details[open] > summary .plus::before {
 	padding-bottom: 160px;
 }
 .home-hero__content .t-hero {
-	font-size: clamp(42px, 5.2vw, 84px);
 	text-shadow: 0 2px 30px rgba(17, 34, 31, 0.45);
 }
 .home-hero__content .lead {
@@ -2126,6 +2127,20 @@ a.filter:hover {
 	padding: 17px;
 	font-weight: 700;
 	border-radius: 8px;
+}
+.form__trap {
+	position: absolute;
+	left: -10000px;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+.cf-turnstile {
+	min-height: 65px;
+}
+.form button[disabled] {
+	opacity: 0.6;
+	cursor: progress;
 }
 .form__status {
 	font-size: 15px;

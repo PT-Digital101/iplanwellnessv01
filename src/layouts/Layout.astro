@@ -32,18 +32,72 @@ const props = Astro.props;
 		<VideoLightbox />
 
 		<script define:vars={{ email: CONTACT.email }}>
-			// Forms: when no endpoint is configured in src/consts.ts, fall back to opening
-			// the visitor's e-mail app with the filled-in details so no enquiry is lost.
-			document.querySelectorAll('form[data-form]').forEach((form) => {
-				form.addEventListener('submit', (e) => {
-					if (form.getAttribute('action')) return;
+			// Contact forms: submit to the Worker (src/pages/api/contact.ts) with Turnstile spam protection.
+			// If the endpoint can't deliver yet (no e-mail binding, Turnstile not configured, offline),
+			// fall back to opening the visitor's e-mail app with the details so no enquiry is lost.
+			const forms = document.querySelectorAll('form[data-form]');
+			const msg = {
+				sending: 'กำลังส่งข้อมูล…',
+				ok: 'ขอบคุณค่ะ เราได้รับข้อความของคุณแล้ว และจะติดต่อกลับโดยเร็วที่สุด',
+				mailto: 'กำลังเปิดแอปอีเมลเพื่อส่งข้อมูลของคุณ…',
+				captcha: 'กรุณายืนยันว่าคุณไม่ใช่บอท แล้วลองส่งอีกครั้ง',
+				invalid: 'กรุณากรอกชื่อและอีเมลให้ถูกต้อง',
+				error: 'ส่งไม่สำเร็จ กรุณาลองอีกครั้ง หรือติดต่อเราทาง ' + email,
+			};
+			const mailto = (form) => {
+				const lines = [...new FormData(form).entries()]
+					.filter(([k, v]) => !['company_site', 'started_at', 'cf-turnstile-response'].includes(k) && String(v).trim())
+					.map(([k, v]) => `${k}: ${v}`);
+				window.location.href = `mailto:${email}?subject=${encodeURIComponent('New enquiry from iplanwellness.com')}&body=${encodeURIComponent(lines.join('\n'))}`;
+			};
+
+			// Load Turnstile only when a form comes near the viewport (keeps it off the critical path).
+			if (forms.length && document.querySelector('.cf-turnstile')) {
+				const load = () => {
+					if (document.getElementById('cf-turnstile-js')) return;
+					const s = document.createElement('script');
+					s.id = 'cf-turnstile-js';
+					s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+					s.async = true;
+					document.head.append(s);
+				};
+				const io = new IntersectionObserver((entries) => entries.some((e) => e.isIntersecting) && (load(), io.disconnect()), { rootMargin: '800px' });
+				forms.forEach((f) => { io.observe(f); f.addEventListener('focusin', load, { once: true }); });
+			}
+
+			forms.forEach((form) => {
+				const started = form.querySelector('[name="started_at"]');
+				if (started) started.value = String(Date.now());
+				const status = form.querySelector('[data-status]');
+				const button = form.querySelector('[type="submit"]');
+				const say = (t) => status && (status.textContent = t);
+
+				form.addEventListener('submit', async (e) => {
 					e.preventDefault();
-					const data = new FormData(form);
-					const lines = [...data.entries()].filter(([, v]) => String(v).trim()).map(([k, v]) => `${k}: ${v}`);
-					const subject = 'New enquiry from iplanwellness.com';
-					window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
-					const status = form.querySelector('[data-status]');
-					if (status) status.textContent = 'กำลังเปิดแอปอีเมลเพื่อส่งข้อมูลของคุณ…';
+					const action = form.getAttribute('action');
+					if (!action) return (say(msg.mailto), mailto(form));
+					button && (button.disabled = true);
+					say(msg.sending);
+					try {
+						const res = await fetch(action, { method: 'POST', body: new FormData(form), headers: { accept: 'application/json' } });
+						const out = await res.json().catch(() => ({}));
+						if (out.ok) {
+							form.reset();
+							if (started) started.value = String(Date.now());
+							say(msg.ok);
+						} else if (out.fallback === 'mailto') {
+							say(msg.mailto);
+							mailto(form);
+						} else {
+							say(msg[out.error] || msg.error);
+						}
+					} catch {
+						say(msg.mailto);
+						mailto(form);
+					} finally {
+						button && (button.disabled = false);
+						window.turnstile?.reset?.(form.querySelector('.cf-turnstile'));
+					}
 				});
 			});
 		</script>

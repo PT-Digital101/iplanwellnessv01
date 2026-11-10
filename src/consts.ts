@@ -22,8 +22,14 @@ export const SITE = {
 	/** Optional YouTube/Vimeo links. When empty, the play buttons are hidden. */
 	brandFilmUrl: 'https://www.youtube.com/watch?v=XHxnOOWUoJw',
 	showreelUrl: 'https://www.youtube.com/watch?v=Rzj-5FoNxaQ',
-	/** Where the contact form POSTs. Set to your form handler (e.g. WordPress, Formspree, Web3Forms). */
-	contactFormAction: '',
+	/** Where the contact form POSTs: the Worker route in src/pages/api/contact.ts. */
+	contactFormAction: '/api/contact/',
+	/**
+	 * Cloudflare Turnstile (spam protection) public site key. The matching secret lives only in the
+	 * Worker as the TURNSTILE_SECRET secret, never in this repo. PUBLIC_TURNSTILE_SITE_KEY overrides it
+	 * for local testing (Cloudflare's always-pass test key is 1x00000000000000000000AA).
+	 */
+	turnstileSiteKey: (import.meta.env.PUBLIC_TURNSTILE_SITE_KEY as string | undefined) || '0x4AAAAAAF7jIetbnrEG5wR-',
 } as const;
 
 export const CONTACT = {

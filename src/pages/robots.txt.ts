@@ -5,7 +5,7 @@ export const GET: APIRoute = ({ site }) =>
 	new Response(
 		!LAUNCHED || import.meta.env.PUBLIC_NOINDEX === 'true'
 			? 'User-agent: *\nDisallow: /\n'
-			: `User-agent: *\nAllow: /\n\nSitemap: ${new URL('sitemap-index.xml', site).href}\n`,
+			: `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${new URL('sitemap-index.xml', site).href}\n`,
 		{
 			headers: { 'Content-Type': 'text/plain; charset=utf-8' },
 		},
