@@ -710,13 +710,53 @@ details[open] > summary .plus::before {
 }
 .page-hero__media {
 	left: auto;
-	width: 46%;
+	width: 62%;
+	/* Eased fade: the photo dissolves into the midnight field with no visible edge */
+	-webkit-mask-image: linear-gradient(
+		90deg,
+		transparent 0%,
+		rgba(0, 0, 0, 0.04) 10%,
+		rgba(0, 0, 0, 0.16) 20%,
+		rgba(0, 0, 0, 0.36) 30%,
+		rgba(0, 0, 0, 0.6) 40%,
+		rgba(0, 0, 0, 0.82) 50%,
+		rgba(0, 0, 0, 0.95) 60%,
+		#000 70%
+	);
+	mask-image: linear-gradient(
+		90deg,
+		transparent 0%,
+		rgba(0, 0, 0, 0.04) 10%,
+		rgba(0, 0, 0, 0.16) 20%,
+		rgba(0, 0, 0, 0.36) 30%,
+		rgba(0, 0, 0, 0.6) 40%,
+		rgba(0, 0, 0, 0.82) 50%,
+		rgba(0, 0, 0, 0.95) 60%,
+		#000 70%
+	);
 }
+/* Pull every photo into the brand palette: calmer saturation + forest colour wash */
+.page-hero__media img {
+	filter: saturate(0.72) brightness(0.82) contrast(1.04);
+}
+.page-hero__media::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background: var(--forest);
+	mix-blend-mode: color;
+	opacity: 0.45;
+}
+/* Soft top/bottom vignette so the photo melts into the header area and the section edge */
 .page-hero__media::after {
 	content: '';
 	position: absolute;
 	inset: 0;
-	background: linear-gradient(90deg, var(--midnight) 0%, rgba(17, 34, 31, 0.45) 45%, rgba(17, 34, 31, 0) 100%);
+	z-index: 2;
+	background:
+		linear-gradient(180deg, rgba(17, 34, 31, 0.55) 0%, rgba(17, 34, 31, 0) 28%, rgba(17, 34, 31, 0) 70%, rgba(17, 34, 31, 0.7) 100%),
+		rgba(17, 34, 31, 0.12);
 }
 .page-hero__content {
 	position: relative;
@@ -732,10 +772,12 @@ details[open] > summary .plus::before {
 @media (max-width: 900px) {
 	.page-hero__media {
 		width: 100%;
-		opacity: 0.35;
+		opacity: 0.45;
+		-webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.6) 45%, transparent 100%);
+		mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.6) 45%, transparent 100%);
 	}
 	.page-hero__media::after {
-		background: linear-gradient(180deg, rgba(17, 34, 31, 0.4), var(--midnight));
+		background: linear-gradient(180deg, rgba(17, 34, 31, 0.5), rgba(17, 34, 31, 0.2));
 	}
 	.page-hero__content {
 		padding-top: calc(var(--header-h) + 56px);
@@ -917,12 +959,26 @@ details[open] > summary .plus::before {
 .cells {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--cell-min, 300px)), 1fr));
-	border-top: 1px solid var(--cell-line, var(--line));
-	border-left: 1px solid var(--cell-line, var(--line));
+	/* each cell draws its own border (overlapping 1px), so incomplete rows never leave stray lines */
+	padding: 0 1px 1px 0;
 }
 .cells > * {
-	border-right: 1px solid var(--cell-line, var(--line));
-	border-bottom: 1px solid var(--cell-line, var(--line));
+	border: 1px solid var(--cell-line, var(--line));
+	margin: 0 -1px -1px 0;
+}
+/* Exactly as many columns as items (set --cols inline): no empty column on desktop */
+.cells--count {
+	grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+}
+@media (max-width: 1000px) {
+	.cells--count {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+@media (max-width: 600px) {
+	.cells--count {
+		grid-template-columns: minmax(0, 1fr);
+	}
 }
 .lime-band .cells {
 	--cell-line: var(--line-dark);

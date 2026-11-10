@@ -55,7 +55,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
 				<span class="about-video__play" aria-hidden="true"><Icon name="play" size={36} /></span>
 				<span class="about-video__badge"><span aria-hidden="true"></span>YouTube</span>
 			</a>
-			<ul class="cells" style="--cell-min:280px;--cell-h:280px;list-style:none;margin:0;padding:0">
+			<ul class="cells cells--count" style="--cols:4;--cell-h:280px;list-style:none;margin:0">
 				{
 					ABOUT.why.map((w, i) => (
 						<li class="cell">

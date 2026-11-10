@@ -1,0 +1,11 @@
+Generated using the built-in image_gen tool.
+Mood reference: https://www.lummi.ai/s/photo/wellness-green-shadow
+Final asset: src/assets/images/services/wellness-brand-botanical-shadows.webp
+
+Use case: photorealistic-natural
+Asset type: landscape 3:2 photograph for a premium wellness agency Brand Consultancy service.
+Primary request: refined botanical branding still life photographed on a matte pale-sage plaster surface: one elegant unbranded deep forest-green glass skincare bottle with a simple cream cap, a folded warm-ivory packaging sleeve standing behind it, two large overlapping thick forest-green and muted-sage paper swatches, and a small cream card with a blind embossed abstract circle, no lettering. One graceful real olive branch enters from the upper left, with only a few leaves. Materials suggest a cohesive wellness brand identity. No people, no desk, no notebook.
+Composition: highly restrained editorial product photography, few objects with real breathing room. Objects composed in the middle of the frame, asymmetrical and elegant, photographed at a slightly elevated oblique angle; packaging and swatches clearly legible as physical forms. Landscape crop, central arrangement adaptable to a narrower website hero.
+Lighting and mood: strong natural side sunlight through leaves creating beautiful defined botanical shadows diagonally across the sage surface, deep forest-green shadow areas, illuminated warm cream highlights, nuanced cool green reflections in the glass. Quiet, fresh, sculptural, sophisticated. Inspired by contemporary botanical beauty editorials and wellness green shadow photography.
+Textures: real subtly imperfect paper fibers, matte plaster, believable glass refraction, physically accurate contact shadows. Delicate photographic grain, restrained saturation, natural optical rendering. A convincing photograph, not a 3D render.
+Constraints: no readable text, no logos, no watermark, no floating props, no duplicated objects, no tea cups, no rustic wood, no office props, no neon green, no excessive foliage, no computer screens, no artificial glow, no glossy CGI perfection.

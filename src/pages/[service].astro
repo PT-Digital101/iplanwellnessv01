@@ -56,7 +56,7 @@ const schema = {
 				<h2 class="display t-h2 c-forest" set:html={page.fit.h2} />
 				{page.fit.intro.map((p) => <p class="c-forest" set:html={p} />)}
 			</div>
-			<ol class="cells" style="--cell-min:230px;list-style:none;margin:0;padding:0">
+			<ol class="cells cells--count" style={`--cols:${Math.min(page.fit.items.length, 5)};list-style:none;margin:0`}>
 				{
 					page.fit.items.map((item, i) => (
 						<li class="fit-cell">
@@ -102,7 +102,7 @@ const schema = {
 		<div class="section-head">
 			<h2 class="display t-h2 c-lime" set:html={page.why.h2} />
 		</div>
-		<ul class="cells" style={`--cell-min:${page.why.items.length <= 2 ? 520 : 300}px;list-style:none;margin:0;padding:0`}>
+		<ul class="cells cells--count" style={`--cols:${Math.min(page.why.items.length, 4)};list-style:none;margin:0`}>
 			{
 				page.why.items.map((w, i) => (
 					<li class="why-card">
