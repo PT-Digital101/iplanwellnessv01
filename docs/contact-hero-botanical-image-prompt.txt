@@ -1,0 +1,10 @@
+Generated using the built-in image_gen tool.
+Final asset: src/assets/images/pages/wellness-contact-botanical-consultation-space.webp
+
+Use case: photorealistic-natural
+Asset type: portrait 4:5 website contact hero for a premium Thai wellness branding agency.
+Primary request: a beautifully quiet, welcoming consultation corner in a contemporary tropical wellness creative studio. Two sculptural comfortable chairs upholstered in warm ivory linen sit at an inviting angle across a small simple round pale-stone table, beside a tall window. On the table only a small unglazed cream vase with one graceful leafy branch. No people. A deep forest-green limewash wall and a muted sage floor unify the room. The feeling is an open invitation to sit down and talk.
+Composition: restrained architectural editorial photograph taken at seated eye level, believable modest room, chairs and small table grouped in center-right, complete coherent forms, ample darker green breathing room on the left for a website gradient. Main composition works within a tall hero crop. Avoid objects obstructing each other. A glimpse of tropical greenery outside the window, no busy decor.
+Lighting and mood: natural directional afternoon sunlight casts elegant botanical leaf shadows across the sage floor and textured green wall; soft lit cream upholstery against deep green shade. Calm, warm, sophisticated, fresh. Muted forest green, sage, warm cream, small natural oak accents. Match contemporary wellness green shadow photography. Green comes from actual materials, neutral daylight with honest colors.
+Style: convincing real architectural photography, 35mm lens, careful verticals, tactile natural materials, subtle film grain, real fabric weave and plaster variation, nuanced exposure, physically accurate shadows. Refined but lived-in, understated photographic realism.
+Constraints: no text, no logo, no watermark, no people, no faces, no hands, no computers, no office desk, no tea ceremony, no spa bed, no candles, no stacked stones, no neon, no arches, no surreal architecture, no glossy 3D-render surfaces, no excessive foliage, no dramatic orange grading.
