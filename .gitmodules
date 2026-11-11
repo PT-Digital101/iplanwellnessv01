@@ -1,0 +1,3 @@
+[submodule "docs/seo"]
+	path = docs/seo
+	url = https://github.com/fw-sites/astro-seo.git

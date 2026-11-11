@@ -200,3 +200,9 @@ dist
 
 ### Astro ###
 .astro/
+
+### Foxworks migration tools ###
+# Raw HTTP cache of the inventory crawl (rebuild with inventory/crawl.py)
+inventory/.cache/
+# WordPress export (WXR): large, and holds drafts and user data
+inventory/input/*.xml

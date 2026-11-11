@@ -1,17 +1,20 @@
 // Global site settings. URLs/paths live here so they can be aligned with the
 // existing WordPress permalinks (from the All in One SEO export) in one place.
 
+/** Canonical origin from `const SITE` in astro.config.mjs (rewritten by Foxworks at "Go live"), no trailing slash. */
+const ORIGIN = String(import.meta.env.SITE).replace(/\/$/, '');
+
 /**
- * Pre-launch switch. While false, every page is noindex and robots.txt disallows crawling,
- * so the workers.dev preview never competes with the live iplanwellness.com in Google.
- * Set to true on domain launch day (then rebuild/deploy).
+ * Indexing switch. Pages are indexable only on a production build (Workers Builds of `main`) whose SITE is the
+ * real domain, i.e. after "Go live" in Foxworks. Every preview and every *.workers.dev build stays noindex and
+ * robots.txt disallows crawling, so the preview never competes with the live WordPress site in Google.
  */
-export const LAUNCHED = false;
+export const LAUNCHED = import.meta.env.PUBLIC_SITE_ENV === 'production' && !new URL(ORIGIN).hostname.endsWith('.workers.dev');
 
 export const SITE = {
 	name: 'iPlan Wellness',
 	legalName: 'iPlan Wellness',
-	url: 'https://iplanwellness.com',
+	url: ORIGIN,
 	locale: 'th_TH',
 	lang: 'th',
 	tagline: 'The Complete Wellness Agency',

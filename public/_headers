@@ -1,0 +1,16 @@
+# Cloudflare static asset headers (playbook 08). Rules may match on the hostname: a request that matches several
+# rules gets the headers of all of them.
+
+# workers.dev and preview addresses (<worker>.<subdomain>.workers.dev, <version>-<worker>.<subdomain>.workers.dev)
+# are never indexed. A placeholder matches one hostname label, so the real domain never matches this rule.
+https://:worker.:subdomain.workers.dev/*
+  X-Robots-Tag: noindex
+
+# Files in /_astro/ have a content hash in their name: browsers may keep them for a year.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
