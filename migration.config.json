@@ -1,0 +1,51 @@
+{
+  "$comment": "Per-site settings of the WordPress migration tools (inventory/crawl.py, integrations/site-files/, scripts/seo-parity.py, scripts/check-dist.mjs). Every field is described in docs/MIGRATION.md.",
+  "oldSite": {
+    "origin": "https://www.example.com",
+    "hosts": ["www.example.com", "example.com"],
+    "languages": {
+      "default": "th",
+      "prefixed": ["en"],
+      "ogLocales": { "th": "th_TH", "en": "en_US" }
+    },
+    "siteNames": ["Example Co."],
+    "theme": { "contentClass": "", "sidebarClass": "" },
+    "postTypes": {},
+    "taxonomies": { "category": "/category/", "post_tag": "/tag/" }
+  },
+  "inputs": {
+    "wordpressExport": "inventory/input/wordpress-export.xml",
+    "searchConsole": "inventory/input/search-console",
+    "redirectsMd": "inventory/input/redirects.md"
+  },
+  "htmlSitemap": {
+    "groups": [
+      { "key": "pages", "labels": { "th": "หน้าเว็บ", "en": "Pages" } },
+      { "key": "blog", "labels": { "th": "บทความ", "en": "Blog" } }
+    ],
+    "sections": { "blog": "blog", "category": "blog" },
+    "leads": ["blog", "category"],
+    "nestedLeads": ["category"],
+    "homeLabels": { "th": "หน้าแรก", "en": "Home" },
+    "tocLabels": { "th": "หมวดในหน้านี้", "en": "Sections on this page" },
+    "placeholderTitles": []
+  },
+  "xmlSitemaps": [
+    { "file": "page-sitemap.xml", "label": "pages" },
+    { "file": "post-sitemap.xml", "label": "posts", "types": ["BlogPosting", "Article"] },
+    { "file": "category-sitemap.xml", "label": "archives", "paths": ["^/category/", "/page/\\d+/$"] }
+  ],
+  "videoSitemapPaths": [],
+  "redirects": {
+    "oldSitemaps": {
+      "/sitemap.xml": "/sitemap_index.xml",
+      "/wp-sitemap.xml": "/sitemap_index.xml"
+    },
+    "noShortUrls": ["category", "tag", "author", "blog", "page"]
+  },
+  "parity": {
+    "expectedTitleChange": [],
+    "expectedHreflangChange": [],
+    "expectedH1Change": []
+  }
+}

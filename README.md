@@ -1,5 +1,7 @@
 # iPlan Wellness — website (V3 design)
 
+> Lives in `fw-sites/iplan-wellness` (Foxworks). The Foxworks template was merged in on 2026-11-11: see `CLAUDE.md` for how this site differs from the plain template, and `docs/MIGRATION.md` for the migration tools.
+
 Astro static site deployed to Cloudflare Workers. Built from the **V3 (Treza-style)** pages in the iPlan Wellness design canvas; brand tokens come from the canvas's *Brand Identity* board.
 
 ## Commands
@@ -48,5 +50,5 @@ The 83 blog posts in `src/content/blog/` were imported from the WordPress backup
 
 ## Launch day
 
-1. Set `LAUNCHED = true` in `src/consts.ts` (removes the site-wide noindex and the robots.txt block).
-2. Deploy, attach the iplanwellness.com domain, then submit `/sitemap-index.xml` in Search Console.
+1. In Foxworks: **Connect domain**, then **Go live**. It rewrites `const SITE` in `astro.config.mjs` to the real domain; the next build of `main` turns indexing on by itself (`LAUNCHED` in `src/consts.ts`).
+2. Add the domain to the Turnstile widget's hostnames, then submit `/sitemap-index.xml` in Search Console.

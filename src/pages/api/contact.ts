@@ -14,7 +14,7 @@ export const prerender = false;
 
 const MIN_FILL_MS = 3000;
 const MAX = { first_name: 100, last_name: 100, email: 200, website: 300, budget: 100, message: 5000 } as const;
-const ALLOWED_HOSTS = ['iplanwellness.com', 'www.iplanwellness.com', 'iplanwellnessv01.iplandigital.workers.dev', 'localhost'];
+const ALLOWED_HOSTS = ['iplanwellness.com', 'www.iplanwellness.com', 'iplanwellnessv01.iplandigital.workers.dev', 'iplan-wellness.iplandigital.workers.dev', 'localhost'];
 
 type Env = {
 	TURNSTILE_SECRET?: string;

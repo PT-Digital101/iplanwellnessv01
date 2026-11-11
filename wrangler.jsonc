@@ -1,0 +1,22 @@
+{
+  // Cloudflare Worker for the iPlan Wellness Astro site. Unlike the plain template, this site has a Worker script
+  // (@astrojs/cloudflare adapter) because of the contact form endpoint (src/pages/api/contact.ts); every page is
+  // still prerendered and served as a static asset. Deployed by Workers Builds: `npm run build`, then `npx wrangler deploy`.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "iplan-wellness",
+  "account_id": "ab586af9b8098c0264d0c0c546324479",
+  "compatibility_date": "2025-10-08",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "./dist/_worker.js/index.js",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash", // matches trailingSlash: 'always' in astro.config.mjs
+    "not_found_handling": "404-page" // serves dist/404.html with status 404
+  },
+  "observability": { "enabled": true },
+  "upload_source_maps": true,
+  // The site answers on <name>.<subdomain>.workers.dev until "Go live" in Foxworks attaches its domain.
+  // Every *.workers.dev response carries X-Robots-Tag: noindex (public/_headers), so this address is never indexed.
+  "workers_dev": true
+}
